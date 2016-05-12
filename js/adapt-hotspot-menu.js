@@ -3,7 +3,7 @@ define(function(require) {
     var Backbone = require('backbone');
     var Adapt = require('coreJS/adapt');
     var MenuView = require('coreViews/menuView');
-    var HotspotView = require("menu/adapt-hotspot-menu/js/adapt-hotspot-hotspotView");
+    var HotspotView = require("menu/adapt-hotspot-menu-audio/js/adapt-hotspot-hotspotView");
     
     Adapt.on('router:menu', function(model) {
 

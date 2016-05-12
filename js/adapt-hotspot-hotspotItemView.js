@@ -8,20 +8,18 @@ define(function(require) {
 
         events: {
             "click .menu-item-hotspot":"showDetails",
-            "click .menu-item-done":"hideDetails"
+            "click .menu-item-done":"hideDetails",
+            'click .menu-item-button button' : 'onClickMenuItemButton'
         },
 
         className: function() {
             return [
                 'menu-item',
                 'menu-item-' + this.model.get('_id') ,
-                // 'nth-child-' + this.options.nthChild,
-                // this.options.nthChild % 2 === 0  ? 'nth-child-even' : 'nth-child-odd'
             ].join(' ');
         },
 
         preRender: function() {
-            //this.model.getCompleteComponentsAsPercentage();
             this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
         },
 
@@ -35,17 +33,32 @@ define(function(require) {
             var $element = $(event.currentTarget);
             this.$(".menu-item-inner").addClass("show-item");
             Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
+            // Audio
+            if (Adapt.config.get("_audio") && Adapt.config.get("_audio")._isEnabled) {
+                if(Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1){
+                    // Check if audio is set to autoplay
+                    if(this.model.get("_audio")._isEnabled && this.model.get("_audio")._autoplay){
+                        Adapt.trigger('audio:playAudio', this.model.get("_audio")._media.src, this.model.get("_id"), this.model.get('_audio')._channel);
+                    }
+                }
+            }
         },
 
         hideDetails: function(event) {
             if(event) event.preventDefault();
             this.$(".menu-item-inner").removeClass("show-item");
+            Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
         },
 
         checkIfShouldClose: function(id) {
             if(this.model.get("_id") != id) {
                 this.hideDetails();
             }
+        },
+
+        onClickMenuItemButton: function(event) {
+            if(event && event.preventDefault) event.preventDefault();
+            Backbone.history.navigate('#/id/' + this.model.get('_id'), {trigger: true});
         }
 
     }, {

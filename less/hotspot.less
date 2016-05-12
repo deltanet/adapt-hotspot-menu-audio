@@ -4,11 +4,19 @@
 		.responsive-large;
 		.responsive-medium;
 		.responsive-small;
+		min-height: 100vh;
 	}
 
-	.menu-title, .menu-body{
-		color: @inverted-foreground-color;
+	.menu-title,
+	.menu-body{
+		color: @foreground-color-inverted;
 		margin-bottom:@menu-title-padding-bottom;
+		text-align: center;
+
+		instr {
+			font-weight: @font-weight-bold;
+            color:@instruction-color;
+        }
 	}
 
 	.menu-container-inner {
@@ -33,7 +41,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		@media all and (max-width:899px) {
+		@media all and (max-width:@device-width-medium) {
 			position: static;
 			margin-top: 20px;
 		}
@@ -41,7 +49,7 @@
 
 	.menu-item {
 		position: static;
-		@media all and (max-width:899px) {
+		@media all and (max-width:@device-width-medium) {
 			width: 50%;
 			float:left;
 			&.nth-child-odd {
@@ -71,24 +79,29 @@
 				background-color:@primary-color;
 			}
 		}
-		@media all and (max-width:899px) {
+		@media all and (max-width:@device-width-medium) {
 			display:none;
 		}
 	}
 
 	.menu-item-inner {
 		display: none;
-		width: 30%;
+		width: 50%;
+		left: 25%;
 		position: absolute;
 		padding-bottom: 20px;
-		background: @tertiary-color;
+		background: @background-color;
+		margin-top: 40px;
+		z-index: 100;
+
 		&.show-item {
 			display:block;
 		}
-		@media all and (max-width:899px) {
+		@media all and (max-width:@device-width-medium) {
 			display:block;
 			position: static;
 			width:auto;
+			left: 0;
 		}
 	}
 	.menu-item-inner.disabled {
@@ -97,15 +110,15 @@
 	}
 	
 	.menu-item-done {
-		color: @primary-color;
+		color: @button-color;
 		float:right;
 		padding:10px 10px 0 0;
 		.no-touch & {
 			&:hover {
-				color:@secondary-color;
+				color:@button-color-hover;
 			}
 		}
-		@media all and (max-width:899px) {
+		@media all and (max-width:@device-width-medium) {
 			display:none;
 		}
 	}
@@ -121,15 +134,15 @@
 	.menu-item-button {
 		padding:@menu-body-padding;
 		
-		a {
+		button {
 			text-decoration: none;
 			background-color:@button-color;
 			color:@button-text-color;
 			padding:@button-padding;
 			
 			&:hover {
-				background-color:@button-hover-color;
-				color:@button-text-hover-color;
+				background-color:@button-color-hover;
+				color:@button-text-color-hover;
 			}
 			
 			&.visited {
@@ -143,29 +156,25 @@
 		float:right;
 	}
 
-	// .menu-item-progress {
-	// 	padding:@menu-body-padding;
-	// }
+	.page-level-progress-menu-item-indicator {
+		width: 60px;
+		height: 10px !important;
+		background-color: @menu-item-progress-color;
+		border: none !important;
+		border-radius: 25px;
+	}
 
-	// .menu-item-progress-indicator {
-	// 	margin:0 auto;
-	// 	width:100px;
-	// 	height:8px;
-	// 	border:@item-border;
-	// 	border-radius:5px;
-	// 	overflow:hidden;
-	// }
-
-	// .menu-item-progress-indicator-bar {
-	// 	width:0%;
-	// 	height:8px;
-	// 	background-color:@primary-color;
-	// }
+	.page-level-progress-menu-item-indicator-bar {
+		height: 10px !important;
+		background-color: @menu-item-progress-fill-color !important;
+		border: none !important;
+		border-radius: 25px;
+	}
 }
 
 
 
-@media all and (max-width:760px) {
+@media all and (max-width:@device-width-medium) {
 	.menu-title-inner{
 		padding:15px 0 0;
 	}
