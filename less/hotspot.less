@@ -80,6 +80,9 @@
 		font-weight: bold;
 		font-size: @icon-size;
 		text-align: center;
+		.dir-rtl & {
+            text-align: center;
+        }
 
 		.no-touch & {
 			&:hover {
@@ -120,8 +123,12 @@
 	
 	.menu-item-done {
 		color: @button-color;
-		float:right;
-		padding:10px 10px 0 0;
+		float: right;
+		padding: 10px 10px 0px 0px;
+		.dir-rtl & {
+            float: left;
+            padding: 10px 0px 0px 10px;
+        }
 		.no-touch & {
 			&:hover {
 				color:@button-color-hover;
@@ -162,7 +169,10 @@
 	}
 
 	.menu-item-duration {
-		float:right;
+		float: right;
+		.dir-rtl & {
+            float: left;
+        }
 	}
 
 	.page-level-progress-menu-item-indicator {
