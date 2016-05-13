@@ -1,4 +1,4 @@
-<button role="button" class="base menu-item-hotspot {{#if _isVisited}}visited{{/if}} {{#if _isComplete}}complete{{/if}}" style="top:{{_hotspotMenuItem.position._top}}%; left:{{_hotspotMenuItem.position._left}}%" data-id="{{_id}}"></button>
+<button role="button" class="base menu-item-hotspot {{#if _hotspotMenuItem._buttonIcon._isEnabled}}icon {{_hotspotMenuItem._buttonIcon._icon}}{{/if}} {{#if _isVisited}}visited{{/if}} {{#if _isComplete}}complete{{/if}}" style="top:{{_hotspotMenuItem.position._top}}%; left:{{_hotspotMenuItem.position._left}}%" data-id="{{_id}}">{{_hotspotMenuItem.title}}</button>
 <div class="menu-item-inner{{#if _locked}} disabled{{/if}}">
 	<button class="base menu-item-done icon icon-cross"></button>
 	<div class="menu-item-title">
