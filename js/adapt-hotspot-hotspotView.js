@@ -22,15 +22,6 @@ define(function(require) {
                                 isFailed : assessmentState.isPass === false
                             });
                     }
-                    item.set("_locked", false);
-                    if (item.get("_lock")) {
-                        var contentObjects = item.get("_lock");
-                        var completeCount = 0;
-                        for( var i = 0; i < contentObjects.length; i++) if (Adapt.contentObjects.findWhere({_id:contentObjects[i]}).get("_isComplete")) completeCount++;
-                        if (completeCount < contentObjects.length) {
-                            item.set("_locked", true);
-                        }
-                    }
                 }
             });
 

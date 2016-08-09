@@ -16,6 +16,10 @@ define(function(require) {
             return [
                 'menu-item',
                 'menu-item-' + this.model.get('_id') ,
+                this.model.get('_classes'),
+                this.model.get('_isVisited') ? 'visited' : '',
+                this.model.get('_isComplete') ? 'completed' : '',
+                this.model.get('_isLocked') ? 'locked' : ''
             ].join(' ');
         },
 
@@ -34,12 +38,10 @@ define(function(require) {
             this.$(".menu-item-inner").addClass("show-item");
             Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
             // Audio
-            if (Adapt.config.get("_audio") && Adapt.config.get("_audio")._isEnabled) {
-                if(Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1){
-                    // Check if audio is set to autoplay
-                    if(this.model.get("_audio")._isEnabled && this.model.get("_audio")._autoplay){
-                        Adapt.trigger('audio:playAudio', this.model.get("_audio")._media.src, this.model.get("_id"), this.model.get('_audio')._channel);
-                    }
+            if(Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1){
+                // Check if audio is set to autoplay
+                if(this.model.get("_audio")._isEnabled && this.model.get("_audio")._autoplay){
+                    Adapt.trigger('audio:playAudio', this.model.get("_audio")._media.src, this.model.get("_id"), this.model.get('_audio')._channel);
                 }
             }
         },
@@ -47,7 +49,9 @@ define(function(require) {
         hideDetails: function(event) {
             if(event) event.preventDefault();
             this.$(".menu-item-inner").removeClass("show-item");
-            Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+            if(this.model.get("_audio")._isEnabled){
+                Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+            }
         },
 
         checkIfShouldClose: function(id) {
@@ -58,6 +62,7 @@ define(function(require) {
 
         onClickMenuItemButton: function(event) {
             if(event && event.preventDefault) event.preventDefault();
+            if(this.model.get('_isLocked')) return;
             Backbone.history.navigate('#/id/' + this.model.get('_id'), {trigger: true});
         }
 
