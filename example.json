@@ -1,41 +1,73 @@
 // put _hotspotMenuGraphic on menu content object
-
-"_hotspotMenuGraphic": {
-    "alt": "alt text",
-    "src": "course/en/images/***.jpg"
-},
-"_audio": {
-    "_isEnabled": true,
-    "_showControls": false,
-    "_autoplay": true,
-    "_channel": 0,
-    "_location": "top-right",
-    "_media": {
-        "src": "course/en/audio/***.mp3"
-    }
-}
-
+    {
+        "_id": "co-02",
+        "_parentId": "course",
+        "_type": "menu",
+        "_classes": "",
+        "title": "",
+        "displayTitle": "",
+        "pageBody": "",
+        "body": "",
+        "linkLockedText": "",
+        "linkText": "",
+        "linkVisitedText": "",
+        "durationLabel": "",
+        "duration": "",
+        "_hotspotMenuGraphic": {
+            "alt": "alt text",
+            "src": "course/en/images/***.jpg"
+        },
+        "_audio": {
+            "_isEnabled": true,
+            "_showControls": false,
+            "_autoplay": true,
+            "_channel": 0,
+            "_location": "top-right",
+            "_media": {
+                "src": "course/en/audio/***.mp3"
+            }
+        },
+        "_comment": "_lockType = sequential | unlockFirst | lockLast | custom",
+        "_lockType": ""
+    },
 
 // put _hotspotMenuItem on child content objects and use position to place hotspot
-
-"_hotspotMenuItem": {
-    "title": "",
-    "_buttonIcon": {
-        "_isEnabled": true,
-        "_icon": "icon-pin"
+    {
+        "_id": "co-05",
+        "_parentId": "co-02",
+        "_type": "page",
+        "_classes": "",
+        "title": "",
+        "displayTitle": "",
+        "pageBody": "",
+        "body": "",
+        "_hotspotMenuItem": {
+            "title": "",
+            "_buttonIcon": {
+                "_isEnabled": true,
+                "_icon": "icon-pin"
+            },
+            "position": {
+                "_top":50,
+                "_left":50
+            }
+        },
+        "_audio": {
+            "_isEnabled": true,
+            "_showControls": true,
+            "_autoplay": true,
+            "_channel": 0,
+            "_location": "top-right",
+            "_media": {
+                "src": "course/en/audio/***.mp3"
+            }
+        },
+        "linkLockedText": "Locked",
+        "linkText": "Start",
+        "linkVisitedText": "Revisit",
+        "durationLabel": "Duration:",
+        "duration": "2 mins",
+        "_pageLevelProgress": {
+            "_isEnabled": true
+        }
     },
-    "position": {
-        "_top":50,
-        "_left":50
-    }
-},
-"_audio": {
-    "_isEnabled": true,
-    "_showControls": false,
-    "_autoplay": true,
-    "_channel": 0,
-    "_location": "top-right",
-    "_media": {
-        "src": "course/en/audio/***.mp3"
-    }
-}
