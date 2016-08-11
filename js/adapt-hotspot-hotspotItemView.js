@@ -25,11 +25,21 @@ define(function(require) {
 
         preRender: function() {
             this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
+            if (!this.model.get('_isVisited')) {
+              this.setVisitedIfBlocksComplete();
+            }
         },
 
         postRender: function() {
             this.setReadyStatus();
             this.$el.addClass("hotspot-menu");
+        },
+
+        setVisitedIfBlocksComplete: function() {
+            var completedBlock = this.model.findDescendants('components').findWhere({_isComplete: true, _isOptional: false});
+            if (completedBlock != undefined) {
+                this.model.set('_isVisited', true);
+            }
         },
 
         showDetails: function(event) {
