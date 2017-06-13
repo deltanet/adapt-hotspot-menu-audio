@@ -48,10 +48,10 @@ define(function(require) {
             this.$(".menu-item-inner").addClass("show-item");
             Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
             // Audio
-            if(Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1){
+            if(Adapt.audio.audioClip[this.model.get('_hotspotMenuAudio')._audio._channel].status==1){
                 // Check if audio is set to autoplay
-                if(this.model.get("_audio")._isEnabled && this.model.get("_audio")._autoplay){
-                    Adapt.trigger('audio:playAudio', this.model.get("_audio")._media.src, this.model.get("_id"), this.model.get('_audio')._channel);
+                if(this.model.get("_hotspotMenuAudio")._audio._isEnabled && this.model.get("_hotspotMenuAudio")._audio._autoplay){
+                    Adapt.trigger('audio:playAudio', this.model.get("_hotspotMenuAudio")._audio._media.src, this.model.get("_id"), this.model.get('_hotspotMenuAudio')._audio._channel);
                 }
             }
         },
@@ -59,8 +59,8 @@ define(function(require) {
         hideDetails: function(event) {
             if(event) event.preventDefault();
             this.$(".menu-item-inner").removeClass("show-item");
-            if(this.model.get("_audio")._isEnabled){
-                Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+            if(this.model.get("_hotspotMenuAudio")._audio._isEnabled){
+                Adapt.trigger('audio:pauseAudio', this.model.get('_hotspotMenuAudio')._audio._channel);
             }
         },
 
@@ -79,7 +79,7 @@ define(function(require) {
     }, {
         template:'hotspot-menu-item'
     });
-    
+
     return HotspotItemView;
-    
+
 });

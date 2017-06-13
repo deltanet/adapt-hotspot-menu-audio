@@ -45,7 +45,153 @@
           "type":"object"
         },
         "contentobject": {
-          "type":"object"
+          "type":"object",
+          "properties": {
+            "_hotspotMenuAudio": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "linkLockedText": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "This is the instruction text"
+                },
+                "linkVisitedText": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "durationLabel": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "_hotspotMenuItem": {
+                  "type":"object",
+                  "required":false,
+                  "title": "Menu Item",
+                  "properties":{
+                    "title": {
+                      "type":"string",
+                      "required":false,
+                      "default": "",
+                      "inputType": "Text",
+                      "validators": [],
+                      "translatable": true
+                    },
+                    "_buttonIcon": {
+                      "type":"object",
+                      "required":false,
+                      "title": "Icon",
+                      "properties":{
+                        "_isEnabled": {
+                          "type":"boolean",
+                          "required":false,
+                          "default": true,
+                          "title": "Is Enabled",
+                          "inputType": { "type": "Boolean", "options": [false, true]},
+                          "validators": []
+                        },
+                        "_icon": {
+                          "type":"string",
+                          "required":false,
+                          "default": "",
+                          "inputType": "Text",
+                          "validators": [],
+                          "help": "CSS class for the icon."
+                        }
+                      }
+                    },
+                    "_position": {
+                      "type":"object",
+                      "required":false,
+                      "title": "Icon Position",
+                      "properties":{
+                        "_top": {
+                          "type":"number",
+                          "required":false,
+                          "default": 0,
+                          "title": "Position - Top",
+                          "inputType": "Number",
+                          "validators": []
+                        },
+                        "_left": {
+                          "type":"number",
+                          "required":false,
+                          "default": 0,
+                          "title": "Position - Left",
+                          "inputType": "Number",
+                          "validators": []
+                        }
+                      }
+                    }
+                  }
+                },
+                "_audio": {
+                  "type": "object",
+                  "required": false,
+                  "title": "Audio",
+                  "properties": {
+                    "_isEnabled": {
+                      "type":"boolean",
+                      "required":true,
+                      "title": "Is Enabled",
+                      "inputType": { "type": "Boolean", "options": [false, true]},
+                      "validators": [],
+                      "help": "Turns audio on and off. Acceptable values are true and false."
+                    },
+                    "_showControls": {
+                      "type":"boolean",
+                      "required":true,
+                      "title": "Show Controls",
+                      "inputType": { "type": "Boolean", "options": [false, true]},
+                      "validators": []
+                    },
+                    "_autoplay": {
+                      "type":"boolean",
+                      "required":false,
+                      "title": "Autoplay Audio",
+                      "inputType": { "type": "Boolean", "options": [false, true]},
+                      "validators": [],
+                      "help": "Turns Audio Autoplay on and off. Acceptable values are true and false."
+                    },
+                    "_channel": {
+                      "type":"number",
+                      "required":true,
+                      "default": 0,
+                      "title": "Channel Number",
+                      "inputType": "Number",
+                      "validators": ["required", "number"],
+                      "help": "Channels represent the number of items defined in the course.json settings, by default there are 0, 1 and 2 available (3 _audioItems in the array)"
+                    },
+                    "_media": {
+                      "type":"object",
+                      "required":true,
+                      "title": "Audio Asset",
+                      "properties":{
+                        "src": {
+                          "type":"string",
+                          "required":true,
+                          "title": "Src",
+                          "inputType": "Asset:audio",
+                          "validators": []
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         "article": {
           "type":"object"

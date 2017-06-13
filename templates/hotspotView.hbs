@@ -1,3 +1,10 @@
+{{#if _hotspotMenuAudio._audio._isEnabled}}
+<div class="audio-controls">
+	<div class="audio-inner">
+		<button class="audio-toggle" id="{{_id}}" role="button"></button>
+	</div>
+</div>
+{{/if}}
 <div class="menu-container">
 	<div class='menu-container-inner box-menu-inner clearfix'>
 		{{#if displayTitle}}
@@ -16,10 +23,8 @@
 		{{/if}}
 		<div class="hotspot-container">
 			<div class="hotspot-container-inner">
-				<img class="hotspot-container-image" src="{{_hotspotMenuGraphic.src}}" alt="{{_hotspotMenuGraphic.alt}}" />
-				<div class="hotspot-items clearfix">
-					
-				</div>
+				<img class="hotspot-container-image" src="{{_graphic.src}}" alt="{{_graphic.alt}}" />
+			<div class="hotspot-items clearfix"></div>
 			</div>
 		</div>
 	</div>

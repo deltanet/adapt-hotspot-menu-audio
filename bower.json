@@ -1,17 +1,16 @@
 {
-    "name": "adapt-hotspot-menu-audio",
-    "repository": "git://github.com/deltanet/adapt-hotspot-menu-audio",
-    "framework": "^2.0.0",
-    "version": "2.0.1",
-    "homepage": "https://github.com/deltanet/adapt-hotspot-menu-audio",
-    "issues": "https://github.com/deltanet/adapt-hotspot-menu-audio/issues/",
-    "displayName": "Hotspot Menu",
-    "menu": "hotspot-menu-audio",
-    "description": "A hotspot menu",
-    "main": "/js/adapt-hotspot-menu.js",
-    "keywords": [
-        "adapt-plugin",
-        "adapt-menu"
-    ],
-    "license": "GPLv3"
+  "name": "adapt-hotspot-menu-audio",
+  "version": "1.0.0",
+  "framework": "^2.0.0",
+  "homepage": "https://github.com/deltanet/adapt-hotspot-menu-audio",
+  "displayName": "Hotspot Menu",
+  "menu": "hotspot-menu-audio",
+  "description": "",
+  "main": "/js/adapt-hotspot-menu.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-menu"
+  ],
+  "license": "GPL-3.0",
+  "targetAttribute": "_hotspotMenuAudio"
 }
