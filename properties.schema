@@ -57,7 +57,7 @@
                   "default": "",
                   "inputType": "Text",
                   "validators": [],
-                  "help": "This is the instruction text"
+                  "translatable": true
                 },
                 "linkVisitedText": {
                   "type": "string",
@@ -104,10 +104,10 @@
                         "_icon": {
                           "type":"string",
                           "required":false,
-                          "default": "",
+                          "default": "icon-pin",
+                          "title": "CSS class",
                           "inputType": "Text",
-                          "validators": [],
-                          "help": "CSS class for the icon."
+                          "validators": []
                         }
                       }
                     },
@@ -120,7 +120,7 @@
                           "type":"number",
                           "required":false,
                           "default": 0,
-                          "title": "Position - Top",
+                          "title": "Top",
                           "inputType": "Number",
                           "validators": []
                         },
@@ -128,7 +128,7 @@
                           "type":"number",
                           "required":false,
                           "default": 0,
-                          "title": "Position - Left",
+                          "title": "Left",
                           "inputType": "Number",
                           "validators": []
                         }
