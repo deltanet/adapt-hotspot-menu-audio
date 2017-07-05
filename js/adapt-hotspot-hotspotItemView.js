@@ -29,6 +29,8 @@ define(function(require) {
               this.setVisitedIfBlocksComplete();
             }
             this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
+
+            this.disableAnimation = Adapt.config.has('_disableAnimation') ? Adapt.config.get('_disableAnimation') : false;
         },
 
         postRender: function() {
@@ -64,7 +66,19 @@ define(function(require) {
         showDetails: function(event) {
             if(event) event.preventDefault();
             var $element = $(event.currentTarget);
-            this.$(".menu-item-inner").addClass("show-item");
+
+            if (this.disableAnimation) {
+                this.$('.menu-item-overlay').css("display", "block");
+                this.$(".menu-item-inner").addClass("show-item");
+            } else {
+                this.$('.menu-item-overlay').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
+                  this.$('.menu-item-overlay').css("display", "block");
+                }, this)});
+                this.$('.menu-item-inner').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
+                  this.$(".menu-item-inner").addClass("show-item");
+                }, this)});
+            }
+
             Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
             // Audio
             if(Adapt.audio.audioClip[this.model.get('_hotspotMenuAudio')._audio._channel].status==1){
@@ -80,6 +94,13 @@ define(function(require) {
             this.$(".menu-item-inner").removeClass("show-item");
             if(this.model.get("_hotspotMenuAudio")._audio._isEnabled){
                 Adapt.trigger('audio:pauseAudio', this.model.get('_hotspotMenuAudio')._audio._channel);
+            }
+            if (this.disableAnimation) {
+                this.$('.menu-item-overlay').css("display", "none");
+            } else {
+                this.$('.menu-item-overlay').velocity({ opacity: 0 }, {duration:400, complete:_.bind(function() {
+                  this.$('.menu-item-overlay').css("display", "none");
+                }, this)});
             }
         },
 
