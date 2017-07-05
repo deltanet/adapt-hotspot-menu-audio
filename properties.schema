@@ -9,28 +9,32 @@
       "required": true,
       "default": "Menu",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "durationLabel": {
       "type": "string",
       "required": true,
       "default": "Duration:",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "menuItem": {
       "type": "string",
       "required": true,
       "default": "Menu item.",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     },
     "menuEnd": {
       "type": "string",
       "required": true,
       "default": "You have reached the end of the menu.",
       "inputType": "Text",
-      "validators": []
+      "validators": [],
+      "translatable": true
     }
   },
   "properties": {
@@ -45,7 +49,181 @@
           "type":"object"
         },
         "contentobject": {
-          "type":"object"
+          "type":"object",
+          "properties": {
+            "_hotspotMenuAudio": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "instruction": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "instructionMobile": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "linkLockedText": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "linkVisitedText": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "durationLabel": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "inputType": "Text",
+                  "validators": [],
+                  "translatable": true
+                },
+                "_hotspotMenuItem": {
+                  "type":"object",
+                  "required":false,
+                  "title": "Menu Item",
+                  "properties": {
+                    "_type": {
+                      "type": "string",
+                      "required": true,
+                      "default": "icon",
+                      "title": "Button type",
+                      "inputType": {"type": "Select", "options": ["text", "number" , "icon", "custom"]},
+                      "validators": [],
+                      "help": "Set the type of button to be used for the menu item"
+                    },
+                    "text": {
+                      "type": "string",
+                      "required": false,
+                      "default": "",
+                      "title": "Text",
+                      "inputType": "Text",
+                      "validators": [],
+                      "translatable": true
+                    },
+                    "number": {
+                      "type": "string",
+                      "required": false,
+                      "default": "",
+                      "title": "Number",
+                      "inputType": "Text",
+                      "validators": [],
+                      "translatable": true
+                    },
+                    "icon": {
+                      "type": "string",
+                      "required": false,
+                      "default": "icon-pin",
+                      "title": "Icon",
+                      "inputType": {"type": "Select", "options": ["icon-checklist", "icon-person", "icon-pin", "icon-plus", "icon-point", "icon-question", "icon-search", "icon-star", "icon-warning"]},
+                      "validators": []
+                    },
+                    "_custom": {
+                      "type": "string",
+                      "required": false,
+                      "default": "",
+                      "title": "Custom CSS class",
+                      "inputType": "Text",
+                      "validators": []
+                    },
+                    "_position": {
+                      "type":"object",
+                      "required": false,
+                      "title": "Icon Position",
+                      "properties":{
+                        "_top": {
+                          "type": "number",
+                          "required": false,
+                          "default": 0,
+                          "title": "Top",
+                          "inputType": "Number",
+                          "validators": []
+                        },
+                        "_left": {
+                          "type":"number",
+                          "required": false,
+                          "default": 0,
+                          "title": "Left",
+                          "inputType": "Number",
+                          "validators": []
+                        }
+                      }
+                    }
+                  }
+                },
+                "_audio": {
+                  "type": "object",
+                  "required": false,
+                  "title": "Audio",
+                  "properties": {
+                    "_isEnabled": {
+                      "type": "boolean",
+                      "required": true,
+                      "title": "Is Enabled",
+                      "inputType": { "type": "Boolean", "options": [false, true]},
+                      "validators": [],
+                      "help": "Turns audio on and off. Acceptable values are true and false."
+                    },
+                    "_showControls": {
+                      "type": "boolean",
+                      "required": true,
+                      "title": "Show Controls",
+                      "inputType": { "type": "Boolean", "options": [false, true]},
+                      "validators": []
+                    },
+                    "_autoplay": {
+                      "type": "boolean",
+                      "required": false,
+                      "title": "Autoplay Audio",
+                      "inputType": { "type": "Boolean", "options": [false, true]},
+                      "validators": [],
+                      "help": "Turns Audio Autoplay on and off. Acceptable values are true and false."
+                    },
+                    "_channel": {
+                      "type": "number",
+                      "required": true,
+                      "default": 0,
+                      "title": "Channel Number",
+                      "inputType": "Number",
+                      "validators": ["required", "number"],
+                      "help": "Channels represent the number of items defined in the course.json settings, by default there are 0, 1 and 2 available (3 _audioItems in the array)"
+                    },
+                    "_media": {
+                      "type": "object",
+                      "required": true,
+                      "title": "Audio Asset",
+                      "properties":{
+                        "src": {
+                          "type": "string",
+                          "required": true,
+                          "title": "Src",
+                          "inputType": "Asset:audio",
+                          "validators": []
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
         "article": {
           "type":"object"

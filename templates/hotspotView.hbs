@@ -1,26 +1,43 @@
-<div class="menu-container">
+{{#if _hotspotMenuAudio._audio._isEnabled}}
+<div class="audio-controls">
+	<div class="audio-inner">
+		<button class="audio-toggle" id="{{_id}}" role="button"></button>
+	</div>
+</div>
+{{/if}}
+<div class="menu-container" role="region" aria-label="{{_globals._menu._hotspotMenuAudio.ariaRegion}}">
 	<div class='menu-container-inner box-menu-inner clearfix'>
-		{{#if displayTitle}}
-		<div class="menu-title">
-			<h1 class="menu-title-inner">
-				{{{displayTitle}}}
-			</h1>
-		</div>
-		{{/if}}
-		{{#if body}}
-		<div class="menu-body">
-			<div class="menu-body-inner">
-				{{{body}}}
+		<div class="menu-header">
+			<div class="menu-header-inner">
+				{{#if displayTitle}}
+				<div class="menu-title">
+					<div class="menu-title-inner h1 accessible-text-block" role="heading" aria-level="1" tabindex="0">
+						{{{displayTitle}}}
+					</div>
+				</div>
+				{{/if}}
+				{{#if body}}
+				<div class="menu-body">
+					<div class="menu-body-inner accessible-text-block">
+						{{{a11y_text body}}}
+					</div>
+				</div>
+				{{/if}}
+				{{#if _hotspotMenuAudio.instruction}}
+				<div class="menu-instruction">
+					<div class="menu-instruction-inner accessible-text-block">
+						{{{a11y_text _hotspotMenuAudio.instruction}}}
+					</div>
+				</div>
+				{{/if}}
 			</div>
 		</div>
-		{{/if}}
 		<div class="hotspot-container">
 			<div class="hotspot-container-inner">
-				<img class="hotspot-container-image" src="{{_hotspotMenuGraphic.src}}" alt="{{_hotspotMenuGraphic.alt}}" />
-				<div class="hotspot-items clearfix">
-					
-				</div>
+				<img class="hotspot-container-image" src="{{_graphic.src}}" alt="{{_graphic.alt}}" />
+			<div class="hotspot-items clearfix"></div>
 			</div>
 		</div>
 	</div>
+	<div class="aria-label relative a11y-ignore-focus prevent-default" tabindex="0" role="region">{{_globals._menu._hotspotMenuAudio.menuEnd}}</div>
 </div>

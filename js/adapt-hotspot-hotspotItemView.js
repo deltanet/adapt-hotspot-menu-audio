@@ -28,11 +28,30 @@ define(function(require) {
             if (!this.model.get('_isVisited')) {
               this.setVisitedIfBlocksComplete();
             }
+            this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
         },
 
         postRender: function() {
             this.setReadyStatus();
             this.$el.addClass("hotspot-menu");
+
+            // Check for button type
+            switch (this.type) {
+              case "text":
+                this.$(".menu-item-hotspot").addClass("title-enabled");
+                this.$(".menu-item-hotspot").html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.text);
+                break;
+              case "number":
+                this.$(".menu-item-hotspot").addClass("number-enabled");
+                this.$(".menu-item-hotspot").html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.number);
+                break;
+              case "icon":
+                this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._icon);
+                break;
+              case "custom":
+                this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._custom);
+                break;
+            }
         },
 
         setVisitedIfBlocksComplete: function() {
@@ -48,10 +67,10 @@ define(function(require) {
             this.$(".menu-item-inner").addClass("show-item");
             Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
             // Audio
-            if(Adapt.audio.audioClip[this.model.get('_audio')._channel].status==1){
+            if(Adapt.audio.audioClip[this.model.get('_hotspotMenuAudio')._audio._channel].status==1){
                 // Check if audio is set to autoplay
-                if(this.model.get("_audio")._isEnabled && this.model.get("_audio")._autoplay){
-                    Adapt.trigger('audio:playAudio', this.model.get("_audio")._media.src, this.model.get("_id"), this.model.get('_audio')._channel);
+                if(this.model.get("_hotspotMenuAudio")._audio._isEnabled && this.model.get("_hotspotMenuAudio")._audio._autoplay){
+                    Adapt.trigger('audio:playAudio', this.model.get("_hotspotMenuAudio")._audio._media.src, this.model.get("_id"), this.model.get('_hotspotMenuAudio')._audio._channel);
                 }
             }
         },
@@ -59,8 +78,8 @@ define(function(require) {
         hideDetails: function(event) {
             if(event) event.preventDefault();
             this.$(".menu-item-inner").removeClass("show-item");
-            if(this.model.get("_audio")._isEnabled){
-                Adapt.trigger('audio:pauseAudio', this.model.get('_audio')._channel);
+            if(this.model.get("_hotspotMenuAudio")._audio._isEnabled){
+                Adapt.trigger('audio:pauseAudio', this.model.get('_hotspotMenuAudio')._audio._channel);
             }
         },
 
@@ -79,7 +98,7 @@ define(function(require) {
     }, {
         template:'hotspot-menu-item'
     });
-    
+
     return HotspotItemView;
-    
+
 });
