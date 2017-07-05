@@ -64,6 +64,10 @@ define(function(require) {
             });
             $(".menu").addClass("hotspot-menu");
 
+            this.listenTo(Adapt, 'device:changed', this.deviceChanged);
+
+            this.deviceChanged();
+
             if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
               this.listenTo(Adapt, 'audio:updateAudioStatus', this.updateToggle);
               this.listenToOnce(Adapt, "remove", this.removeInViewListeners);
@@ -150,6 +154,18 @@ define(function(require) {
             } else {
                 this.$('.audio-toggle').addClass('hidden');
             }
+        },
+
+        deviceChanged: function() {
+          if (Adapt.device.screenSize === 'large') {
+            if(this.model.get('_hotspotMenuAudio').instruction !== "") {
+              this.$(".menu-instruction-inner").html(this.model.get('_hotspotMenuAudio').instruction);
+            }
+          } else {
+            if(this.model.get('_hotspotMenuAudio').instructionMobile !== "") {
+              this.$(".menu-instruction-inner").html(this.model.get('_hotspotMenuAudio').instructionMobile);
+            }
+          }
         },
 
         removeInViewListeners: function () {

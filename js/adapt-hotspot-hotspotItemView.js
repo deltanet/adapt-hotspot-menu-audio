@@ -28,11 +28,30 @@ define(function(require) {
             if (!this.model.get('_isVisited')) {
               this.setVisitedIfBlocksComplete();
             }
+            this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
         },
 
         postRender: function() {
             this.setReadyStatus();
             this.$el.addClass("hotspot-menu");
+
+            // Check for button type
+            switch (this.type) {
+              case "text":
+                this.$(".menu-item-hotspot").addClass("title-enabled");
+                this.$(".menu-item-hotspot").html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.text);
+                break;
+              case "number":
+                this.$(".menu-item-hotspot").addClass("number-enabled");
+                this.$(".menu-item-hotspot").html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.number);
+                break;
+              case "icon":
+                this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._icon);
+                break;
+              case "custom":
+                this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._custom);
+                break;
+            }
         },
 
         setVisitedIfBlocksComplete: function() {

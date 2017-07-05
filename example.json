@@ -9,37 +9,39 @@
     "pageBody": "",
     "body": "",
     "_graphic": {
-        "src": "course/en/images/***.jpg",
-        "alt": "alt text"
+      "src": "course/en/images/***.jpg",
+      "alt": "alt text"
     },
     "linkText": "",
     "duration": "",
     "_comment": "_lockType = sequential | unlockFirst | lockLast | custom",
     "_lockType": "",
     "_hotspotMenuAudio": {
-        "linkLockedText": "",
-        "linkVisitedText": "",
-        "durationLabel": "",
-        "_hotspotMenuItem": {
-            "title": "",
-            "_buttonIcon": {
-                "_isEnabled": true,
-                "_icon": "icon-pin"
-            },
-            "_position": {
-                "_top": 50,
-                "_left": 50
-            }
-        },
-        "_audio": {
-            "_isEnabled": true,
-            "_showControls": false,
-            "_autoplay": true,
-            "_channel": 0,
-            "_location": "top-right",
-            "_media": {
-                "src": "course/en/audio/***.mp3"
-            }
+      "instruction": "",
+      "instructionMobile": "",
+      "linkLockedText": "",
+      "linkVisitedText": "",
+      "durationLabel": "",
+      "_hotspotMenuItem": {
+        "_type": "text", "text" "number" "icon" "custom"
+        "text": "",
+        "number": "",
+        "_icon": "icon-pin", "icon-checklist" "icon-person" "icon-pin" "icon-plus" "icon-point" "icon-question" "icon-search" "icon-star" "icon-warning"
+        "_custom": "",
+        "_position": {
+          "_top": 50,
+          "_left": 50
         }
+      },
+      "_audio": {
+        "_isEnabled": true,
+        "_showControls": false,
+        "_autoplay": true,
+        "_channel": 0,
+        "_location": "top-right",
+        "_media": {
+          "src": ""
+        }
+      }
     }
 },

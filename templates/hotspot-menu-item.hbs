@@ -1,5 +1,5 @@
-<button role="button" class="base menu-item-hotspot {{#if _hotspotMenuAudio._hotspotMenuItem._buttonIcon._isEnabled}}icon {{_hotspotMenuAudio._hotspotMenuItem._buttonIcon._icon}}{{/if}} {{#if _isVisited}}visited{{/if}} {{#if _isComplete}}complete{{/if}}" style="top:{{_hotspotMenuAudio._hotspotMenuItem._position._top}}%; left:{{_hotspotMenuAudio._hotspotMenuItem._position._left}}%" data-id="{{_id}}">{{_hotspotMenuAudio._hotspotMenuItem.title}}</button>
-<div class="menu-item-inner {{#if _locked}}locked{{/if}}">
+<button role="button" class="base menu-item-hotspot {{#if _isVisited}}visited{{/if}} {{#if _isComplete}}complete{{/if}}" style="top:{{_hotspotMenuAudio._hotspotMenuItem._position._top}}%; left:{{_hotspotMenuAudio._hotspotMenuItem._position._left}}%" data-id="{{_id}}">{{_hotspotMenuAudio._hotspotMenuItem.title}}</button>
+<div class="menu-item-inner {{#if _locked}}locked{{/if}}" aria-label="{{_globals._menu._hotspotMenuAudio.menuItem}}" {{#if _globals._menu._hotspotMenuAudio.menuItem}}tabindex="0"{{/if}}>
 	<button class="base menu-item-done icon icon-cross"></button>
 	<div class="menu-item-title">
 		<h5 class="menu-item-title-inner">{{{displayTitle}}}</h5>
@@ -20,7 +20,7 @@
             {{/if}}
         </button>
         {{#if duration}}
-            <span class="menu-item-duration accessible-text-block" role="region" tabindex="0">{{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</span>
+            <div class="menu-item-duration accessible-text-block" role="region" tabindex="0">{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{/if}} {{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</div>
         {{/if}}
     </div>
 </div>

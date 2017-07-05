@@ -1,34 +1,44 @@
 .hotspot-menu {
 	background: @primary-color;
-	.menu-container {
-		.responsive-large;
-		.responsive-medium;
-		.responsive-small;
-		min-height: 100vh;
+
+	.menu-header {
+		padding: 0;
 	}
 
-	.menu-title,
-	.menu-body{
-		color: @foreground-color-inverted;
-		margin-bottom: @menu-title-padding-bottom;
+	.menu-header-inner {
 		text-align: center;
+	}
+
+	.menu-title {
+		color: @foreground-color-inverted;
+		padding: @menu-title-padding-top;
+	}
+	.menu-body {
+		color: @foreground-color-inverted;
+	}
+
+	.menu-instruction {
+		.instruction-text;
+		color: @foreground-color-inverted;
+		padding-bottom: @menu-title-padding-bottom;
 
 		instr {
-			font-weight: @font-weight-bold;
       color: @instruction-color;
     }
 	}
 
-	.menu-container-inner {
-		padding:20px;
-	}
-
 	.hotspot-container-inner {
 		position: relative;
+		@media all and (max-width:@device-width-medium) {
+			padding: @menu-title-padding-bottom;
+		}
 	}
 
 	.hotspot-container-image {
-		display:block;
+		display: block;
+		@media all and (max-width:@device-width-medium) {
+			display: none;
+		}
 	}
 
 	.hotspot-items {
@@ -39,7 +49,6 @@
 		height: 100%;
 		@media all and (max-width:@device-width-medium) {
 			position: static;
-			margin-top: 20px;
 		}
 	}
 
@@ -65,31 +74,72 @@
 	.menu-item-hotspot {
 		position: absolute;
 		display: block;
-		width:50px;
-		height:50px;
-		border-radius: 50%;
-		background-color: @button-color;
-		border:2px solid #fff;
 
 		color: @item-text-color;
-		text-decoration:none;
-		font-weight: bold;
-		font-size: @icon-size;
+		background-color: @button-color;
+		border:2px solid @item-text-color;
+
 		text-align: center;
-		.dir-rtl & {
-      text-align: center;
-    }
+
+		&.number-enabled {
+			width:50px;
+			height:50px;
+			border-radius: 50%;
+			font-weight: bold;
+			font-size: @icon-size;
+		}
+
+		&.icon-enabled {
+			width:50px;
+			height:50px;
+			border-radius: 50%;
+		}
+
+		&.title-enabled {
+			text-decoration:none;
+			font-weight: bold;
+			font-size: @sub-title-font-size;
+			padding: @item-padding;
+		}
 
 		.no-touch & {
 			&:hover {
 				background-color: @button-color-hover;
-				border:2px solid #fff;
+				border:2px solid @item-text-color;
 				color: @item-text-color-hover;
+
+				&::after {
+				    border-color: @button-color-hover transparent transparent transparent;
+				}
+
 			}
 		}
 		@media all and (max-width:@device-width-medium) {
 			display:none;
 		}
+	}
+
+	.title-enabled:before {
+	    content: "";
+	    position: absolute;
+	    top: 100%;
+	    left: 50%;
+	    margin-left: -12px;
+	    border-width: 12px;
+	    border-style: solid;
+	    border-color: @item-text-color transparent transparent transparent;
+	}
+
+	.title-enabled:after {
+	    content: "";
+	    position: absolute;
+	    top: 100%;
+	    left: 50%;
+			margin-top: -4px;
+	    margin-left: -12px;
+	    border-width: 12px;
+	    border-style: solid;
+	    border-color: @button-color transparent transparent transparent;
 	}
 
 	.menu-item-inner {
@@ -214,25 +264,25 @@
 
 
 @media all and (max-width:@device-width-medium) {
-	.menu-title-inner{
-		padding:15px 0 0;
+	.menu-title-inner {
+		padding: 15px 0 0;
 	}
 
-	.menu-body-inner{
-		padding:0px 0 10px;
+	.menu-body-inner {
+		padding: 0px 0 10px;
 	}
 
-  .hotspot-menu{
+  .hotspot-menu {
 		.menu-inner {
-			padding:0;
+			padding: 0;
 		}
 
-		.menu-item{
+		.menu-item {
 			width:100%;
-			margin-bottom:20px;
+			margin-bottom: 20px;
 
-			.menu-item-inner{
-				margin:0;
+			.menu-item-inner {
+				margin: 0;
 			}
 		}
   }
