@@ -71,6 +71,62 @@
 		}
 	}
 
+	.menu-item-graphic-button {
+		position: absolute;
+		display: block;
+
+		@media all and (max-width:@device-width-medium) {
+			display:none;
+		}
+
+  	img {
+  		display: block;
+  	}
+  	&.graphic-button-states {
+      img.graphic-button-hover {
+    		display: none;
+    	}
+    	img.graphic-button-visited {
+    		display:none;
+    	}
+  		.no-touch & {
+  			&:hover {
+          > img {
+        		display:none;
+        	}
+        	img.graphic-button-hover {
+        		display: block;
+        	}
+        	img.graphic-button-visited {
+        		display:none;
+        	}
+  			}
+  		}
+  	}
+  	&.visited {
+      > img {
+    		display:none;
+    	}
+    	img.graphic-button-hover {
+    		display: none !important;
+  		}
+  		img.graphic-button-visited {
+				display:block !important;
+			}
+  		&.show:hover {
+        > img {
+      		display:none;
+      	}
+      	img.graphic-button-hover {
+      		display: block;
+      	}
+      	img.graphic-button-visited {
+      		display:none;
+      	}
+  		 }
+  	}
+  }
+
 	.menu-item-hotspot {
 		position: absolute;
 		display: block;

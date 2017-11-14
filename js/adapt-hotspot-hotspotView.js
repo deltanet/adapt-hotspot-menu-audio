@@ -65,15 +65,17 @@ define(function(require) {
             $(".menu").addClass("hotspot-menu");
 
             this.listenTo(Adapt, 'device:changed', this.deviceChanged);
+            this.listenTo(Adapt, "device:resize", this.deviceResize);
 
             this.deviceChanged();
 
             if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
               this.listenTo(Adapt, 'audio:updateAudioStatus', this.updateToggle);
-              this.listenToOnce(Adapt, "remove", this.removeInViewListeners);
+              this.listenToOnce(Adapt, "remove", this.removeListeners);
               this.setupAudio();
             }
 
+            this.startWidth = this.$('.hotspot-container-image').outerWidth();
         },
 
         setupAudio: function() {
@@ -168,8 +170,22 @@ define(function(require) {
           }
         },
 
-        removeInViewListeners: function () {
-            Adapt.trigger('audio:pauseAudio', this.audioChannel);
+        deviceResize: function() {
+          var menuWidth = this.$('.hotspot-container-image').outerWidth();
+          var decrease = this.startWidth - menuWidth;
+          var percentageChanged = Math.round((decrease/this.startWidth)*100);
+          var newSize = 100 - percentageChanged;
+
+          this.$('.menu-item-graphic-button img').css({
+              "max-width": newSize+"%",
+              "max-height": newSize+"%"
+          });
+        },
+
+        removeListeners: function () {
+          this.stopListening(Adapt, "device:changed", this.deviceChanged);
+          this.stopListening(Adapt, "device:resize", this.deviceResize);
+          Adapt.trigger('audio:pauseAudio', this.audioChannel);
         }
 
     }, {
