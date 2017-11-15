@@ -105,7 +105,7 @@
                       "required": true,
                       "default": "icon",
                       "title": "Button type",
-                      "inputType": {"type": "Select", "options": ["text", "number" , "icon", "custom"]},
+                      "inputType": {"type": "Select", "options": ["text", "number" , "icon", "graphic", "custom"]},
                       "validators": [],
                       "help": "Set the type of button to be used for the menu item"
                     },
@@ -163,6 +163,50 @@
                           "title": "Left",
                           "inputType": "Number",
                           "validators": []
+                        }
+                      }
+                    },
+                    "_graphic": {
+                      "type":"object",
+                      "required": false,
+                      "title": "Button Graphics",
+                      "properties":{
+                        "src": {
+                          "type":"string",
+                          "required": false,
+                          "default": "",
+                          "title": "Asset",
+                          "inputType": "Asset:image",
+                          "validators": [],
+                          "help": "The image for the normal state"
+                        },
+                        "srcHover": {
+                          "type":"string",
+                          "required": false,
+                          "default": "",
+                          "title": "Hover Asset",
+                          "inputType": "Asset:image",
+                          "validators": [],
+                          "help": "The image for the hover state"
+                        },
+                        "srcVisited": {
+                          "type":"string",
+                          "required": false,
+                          "default": "",
+                          "title": "Visited Asset",
+                          "inputType": "Asset:image",
+                          "validators": [],
+                          "help": "The image for the visited state"
+                        },
+                        "alt": {
+                          "type":"string",
+                          "required": false,
+                          "default": "",
+                          "title": "Alternative Text",
+                          "inputType": "Text",
+                          "validators": [],
+                          "help": "The alternative text for the button",
+                          "translatable": true
                         }
                       }
                     }

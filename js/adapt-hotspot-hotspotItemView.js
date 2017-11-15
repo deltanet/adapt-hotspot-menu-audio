@@ -8,6 +8,7 @@ define(function(require) {
 
         events: {
             "click .menu-item-hotspot":"showDetails",
+            "click .menu-item-graphic-button":"showDetails",
             "click .menu-item-done":"hideDetails",
             'click .menu-item-button button' : 'onClickMenuItemButton'
         },
@@ -29,6 +30,10 @@ define(function(require) {
               this.setVisitedIfBlocksComplete();
             }
             this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
+
+            if(this.type == "graphic") {
+              this.model.set('_graphicEnabled', true);
+            }
 
             this.disableAnimation = Adapt.config.has('_disableAnimation') ? Adapt.config.get('_disableAnimation') : false;
         },

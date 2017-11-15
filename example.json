@@ -23,7 +23,7 @@
       "linkVisitedText": "",
       "durationLabel": "",
       "_hotspotMenuItem": {
-        "_type": "text", "text" "number" "icon" "custom"
+        "_type": "text", "text" "number" "icon" "graphic" "custom"
         "text": "",
         "number": "",
         "_icon": "icon-pin", "icon-checklist" "icon-person" "icon-pin" "icon-plus" "icon-point" "icon-question" "icon-search" "icon-star" "icon-warning"
@@ -31,6 +31,12 @@
         "_position": {
           "_top": 50,
           "_left": 50
+        },
+        "_graphic": {
+          "src": "",
+          "srcHover": "",
+          "srcVisited": "",
+          "alt": ""
         }
       },
       "_audio": {
