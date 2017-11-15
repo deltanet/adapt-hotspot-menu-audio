@@ -25,22 +25,27 @@ define(function(require) {
         },
 
         preRender: function() {
-            this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
-            if (!this.model.get('_isVisited')) {
-              this.setVisitedIfBlocksComplete();
-            }
-            this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
+          _.bindAll(this, 'onKeyUp');
 
-            if(this.type == "graphic") {
-              this.model.set('_graphicEnabled', true);
-            }
+          this.listenTo(Adapt, 'accessibility:toggle', this.onAccessibilityToggle);
+          this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
 
-            this.disableAnimation = Adapt.config.has('_disableAnimation') ? Adapt.config.get('_disableAnimation') : false;
+          if (!this.model.get('_isVisited')) {
+            this.setVisitedIfBlocksComplete();
+          }
+          this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
+
+          if(this.type == "graphic") {
+            this.model.set('_graphicEnabled', true);
+          }
+
+          this.disableAnimation = Adapt.config.has('_disableAnimation') ? Adapt.config.get('_disableAnimation') : false;
         },
 
         postRender: function() {
             this.setReadyStatus();
             this.$el.addClass("hotspot-menu");
+            this.isPopupOpen = false;
 
             // Check for button type
             switch (this.type) {
@@ -61,6 +66,27 @@ define(function(require) {
             }
         },
 
+        setupEscapeKey: function() {
+          var hasAccessibility = Adapt.config.has('_accessibility') && Adapt.config.get('_accessibility')._isActive;
+
+          if (!hasAccessibility && this.isPopupOpen) {
+            $(window).on("keyup", this.onKeyUp);
+          } else {
+            $(window).off("keyup", this.onKeyUp);
+          }
+        },
+
+        onAccessibilityToggle: function() {
+            this.setupEscapeKey();
+        },
+
+        onKeyUp: function(event) {
+            if (event.which != 27) return;
+            event.preventDefault();
+
+            this.hideDetails();
+        },
+
         setVisitedIfBlocksComplete: function() {
             var completedBlock = this.model.findDescendants('components').findWhere({_isComplete: true, _isOptional: false});
             if (completedBlock != undefined) {
@@ -70,6 +96,7 @@ define(function(require) {
 
         showDetails: function(event) {
             if(event) event.preventDefault();
+            this.isPopupOpen = true;
             var $element = $(event.currentTarget);
 
             if (this.disableAnimation) {
@@ -92,10 +119,15 @@ define(function(require) {
                     Adapt.trigger('audio:playAudio', this.model.get("_hotspotMenuAudio")._audio._media.src, this.model.get("_id"), this.model.get('_hotspotMenuAudio')._audio._channel);
                 }
             }
+            Adapt.trigger('popup:opened', this.$('.menu-item-inner'));
+            this.$('.menu-item-title-inner').a11y_focus();
+            this.$('.menu-item-overlay').on('click', _.bind(this.hideDetails, this));
+            this.setupEscapeKey();
         },
 
         hideDetails: function(event) {
             if(event) event.preventDefault();
+            this.isPopupOpen = false;
             this.$(".menu-item-inner").removeClass("show-item");
             if(this.model.get("_hotspotMenuAudio")._audio._isEnabled){
                 Adapt.trigger('audio:pauseAudio', this.model.get('_hotspotMenuAudio')._audio._channel);
@@ -107,6 +139,8 @@ define(function(require) {
                   this.$('.menu-item-overlay').css("display", "none");
                 }, this)});
             }
+            this.$('.menu-item-overlay').off('click');
+            Adapt.trigger('popup:closed', this.$('.menu-item-inner'));
         },
 
         checkIfShouldClose: function(id) {

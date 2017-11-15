@@ -249,18 +249,23 @@
 	}
 
 	.menu-item-done {
+		position: absolute;
+		top: @component-padding;
+		right: @component-padding;
 		color: @button-color;
-		float: right;
-		padding: 10px 10px 0px 0px;
+		padding: @item-padding;
+
 		.dir-rtl & {
-      float: left;
-      padding: 10px 0px 0px 10px;
+			right: inherit;
+			left: @component-padding;
     }
+
 		.no-touch & {
 			&:hover {
 				color: @button-color-hover;
 			}
 		}
+
 		@media all and (max-width:@device-width-medium) {
 			display:none;
 		}
