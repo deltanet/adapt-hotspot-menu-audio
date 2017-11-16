@@ -22,6 +22,7 @@
       "linkLockedText": "",
       "linkVisitedText": "",
       "durationLabel": "",
+      "_bypassPopup": false,
       "_hotspotMenuItem": {
         "_type": "text", "text" "number" "icon" "graphic" "custom"
         "text": "",

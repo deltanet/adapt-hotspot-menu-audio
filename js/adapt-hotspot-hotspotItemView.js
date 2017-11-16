@@ -96,33 +96,38 @@ define(function(require) {
 
         showDetails: function(event) {
             if(event) event.preventDefault();
-            this.isPopupOpen = true;
-            var $element = $(event.currentTarget);
 
-            if (this.disableAnimation) {
-                this.$('.menu-item-overlay').css("display", "block");
-                this.$(".menu-item-inner").addClass("show-item");
+            if(this.model.get('_hotspotMenuAudio')._bypassPopup) {
+              this.onClickMenuItemButton();
             } else {
-                this.$('.menu-item-overlay').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
-                  this.$('.menu-item-overlay').css("display", "block");
-                }, this)});
-                this.$('.menu-item-inner').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
-                  this.$(".menu-item-inner").addClass("show-item");
-                }, this)});
-            }
+              this.isPopupOpen = true;
+              var $element = $(event.currentTarget);
 
-            Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
-            // Audio
-            if(Adapt.audio.audioClip[this.model.get('_hotspotMenuAudio')._audio._channel].status==1){
-                // Check if audio is set to autoplay
-                if(this.model.get("_hotspotMenuAudio")._audio._isEnabled && this.model.get("_hotspotMenuAudio")._audio._autoplay){
-                    Adapt.trigger('audio:playAudio', this.model.get("_hotspotMenuAudio")._audio._media.src, this.model.get("_id"), this.model.get('_hotspotMenuAudio')._audio._channel);
-                }
+              if (this.disableAnimation) {
+                  this.$('.menu-item-overlay').css("display", "block");
+                  this.$(".menu-item-inner").addClass("show-item");
+              } else {
+                  this.$('.menu-item-overlay').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
+                    this.$('.menu-item-overlay').css("display", "block");
+                  }, this)});
+                  this.$('.menu-item-inner').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
+                    this.$(".menu-item-inner").addClass("show-item");
+                  }, this)});
+              }
+
+              Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
+              // Audio
+              if(Adapt.audio.audioClip[this.model.get('_hotspotMenuAudio')._audio._channel].status==1){
+                  // Check if audio is set to autoplay
+                  if(this.model.get("_hotspotMenuAudio")._audio._isEnabled && this.model.get("_hotspotMenuAudio")._audio._autoplay){
+                      Adapt.trigger('audio:playAudio', this.model.get("_hotspotMenuAudio")._audio._media.src, this.model.get("_id"), this.model.get('_hotspotMenuAudio')._audio._channel);
+                  }
+              }
+              Adapt.trigger('popup:opened', this.$('.menu-item-inner'));
+              this.$('.menu-item-title-inner').a11y_focus();
+              this.$('.menu-item-overlay').on('click', _.bind(this.hideDetails, this));
+              this.setupEscapeKey();
             }
-            Adapt.trigger('popup:opened', this.$('.menu-item-inner'));
-            this.$('.menu-item-title-inner').a11y_focus();
-            this.$('.menu-item-overlay').on('click', _.bind(this.hideDetails, this));
-            this.setupEscapeKey();
         },
 
         hideDetails: function(event) {

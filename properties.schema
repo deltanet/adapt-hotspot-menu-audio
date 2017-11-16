@@ -95,6 +95,15 @@
                   "validators": [],
                   "translatable": true
                 },
+                "_bypassPopup": {
+                  "type": "boolean",
+                  "required": false,
+                  "default": false,
+                  "title": "Bypass Popup",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "If enabled the item popup will not be shown and the user will be directed directly to the page"
+                },
                 "_hotspotMenuItem": {
                   "type":"object",
                   "required":false,
