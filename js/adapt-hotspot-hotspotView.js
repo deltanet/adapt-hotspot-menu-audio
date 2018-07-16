@@ -159,7 +159,9 @@ define(function(require) {
         },
 
         deviceChanged: function() {
+          this.$('.menu-item-overlay').css("display", "none");
           if (Adapt.device.screenSize === 'large') {
+            this.$(".menu-item-inner").removeClass("show-item");
             if(this.model.get('_hotspotMenuAudio').instruction !== "") {
               this.$(".menu-instruction-inner").html(this.model.get('_hotspotMenuAudio').instruction);
             }

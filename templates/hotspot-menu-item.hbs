@@ -25,9 +25,9 @@
 	      {{/if}}
       {{/if}}
     </button>
-    {{#if duration}}
-      <div class="menu-item-duration accessible-text-block" role="region" tabindex="0">{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{/if}} {{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</div>
-    {{/if}}
   </div>
+	{{#if duration}}
+		<div class="menu-item-duration accessible-text-block" role="region" tabindex="0">{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{/if}} {{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</div>
+	{{/if}}
 	<button role="button" class="base menu-item-done icon icon-cross" tabindex="-1"></button>
 </div>

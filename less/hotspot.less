@@ -172,12 +172,12 @@
 		}
 
 		&.visited {
-			background-color: @button-disabled-color;
+			background-color: @button-color-disabled;
 			color: @button-text-disabled-color;
 
 			&::after {
 				color: @button-text-disabled-color;
-				border-color: @button-disabled-color transparent transparent transparent;
+				border-color: @button-color-disabled transparent transparent transparent;
 			}
 		}
 
@@ -282,44 +282,31 @@
 
 	.menu-item-button {
 		padding: @menu-body-padding;
+		text-align: center;
 
 		button {
-			text-decoration: none;
-			background-color: @button-color;
-			color: @button-text-color;
-			padding: @button-padding;
-
-			&:hover {
-				background-color: @button-color-hover;
-				color: @button-text-color-hover;
-			}
-
 			&.visited {
-				background-color: @button-disabled-color;
+				background-color: @button-color-disabled;
 				color: @button-text-disabled-color;
 			}
 		}
 	}
 
 	.menu-item-duration {
-		float: right;
-		.dir-rtl & {
-      float: left;
-    }
+		text-align: center;
 	}
 
 	.page-level-progress-menu-item-indicator {
-		width: 60px;
-		height: 10px !important;
+		height: 8px;
 		background-color: @menu-item-progress-color;
-		border: none !important;
+		border: none;
 		border-radius: 25px;
+		clear: both;
 	}
 
 	.page-level-progress-menu-item-indicator-bar {
-		height: 10px !important;
-		background-color: @menu-item-progress-fill-color !important;
-		border: none !important;
+		height: 8px;
+		background-color: @menu-item-progress-fill-color;
 		border-radius: 25px;
 	}
 
