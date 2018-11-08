@@ -2,7 +2,7 @@
 	background: @primary-color;
 
 	.menu-header {
-		padding: 0;
+		padding: @menu-header-padding;
 	}
 
 	.menu-header-inner {
@@ -13,6 +13,7 @@
 		color: @foreground-color-inverted;
 		padding: @menu-title-padding-top;
 	}
+
 	.menu-body {
 		color: @foreground-color-inverted;
 	}
@@ -30,7 +31,7 @@
 	.hotspot-container-inner {
 		position: relative;
 		@media all and (max-width:@device-width-medium) {
-			padding: @menu-title-padding-bottom;
+			padding: @menu-header-padding;
 		}
 	}
 
@@ -229,6 +230,7 @@
 			left: 0;
 		}
 	}
+
 	.menu-item-inner.disabled {
 		cursor: not-allowed;
 		opacity: .5;
@@ -332,31 +334,14 @@
 	  }
 	}
 
-}
-
-
-
-@media all and (max-width:@device-width-medium) {
-	.menu-title-inner {
-		padding: 15px 0 0;
-	}
-
-	.menu-body-inner {
-		padding: 0px 0 10px;
-	}
-
-  .hotspot-menu {
-		.menu-inner {
-			padding: 0;
-		}
-
+	@media all and (max-width:@device-width-medium) {
 		.menu-item {
-			width:100%;
-			margin-bottom: 20px;
-
+			width: 100%;
+			margin-bottom: @menu-header-padding;
 			.menu-item-inner {
 				margin: 0;
 			}
-		}
-  }
+	  }
+	}
+
 }
