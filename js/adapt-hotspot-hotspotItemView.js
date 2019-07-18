@@ -1,8 +1,8 @@
 define(function(require) {
 
     var Backbone = require('backbone');
-    var Adapt = require('coreJS/adapt');
-    var MenuView = require('coreViews/menuView');
+    var Adapt = require('core/js/adapt');
+    var MenuView = require('core/js/views/menuView');
 
     var HotspotItemView = MenuView.extend({
 
@@ -25,9 +25,7 @@ define(function(require) {
         },
 
         preRender: function() {
-          _.bindAll(this, 'onKeyUp');
 
-          this.listenTo(Adapt, 'accessibility:toggle', this.onAccessibilityToggle);
           this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
 
           if (!this.model.get('_isVisited')) {
@@ -64,27 +62,6 @@ define(function(require) {
                 this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._custom);
                 break;
             }
-        },
-
-        setupEscapeKey: function() {
-          var hasAccessibility = Adapt.config.has('_accessibility') && Adapt.config.get('_accessibility')._isActive;
-
-          if (!hasAccessibility && this.isPopupOpen) {
-            $(window).on("keyup", this.onKeyUp);
-          } else {
-            $(window).off("keyup", this.onKeyUp);
-          }
-        },
-
-        onAccessibilityToggle: function() {
-            this.setupEscapeKey();
-        },
-
-        onKeyUp: function(event) {
-            if (event.which != 27) return;
-            event.preventDefault();
-
-            this.hideDetails();
         },
 
         setVisitedIfBlocksComplete: function() {
@@ -126,7 +103,6 @@ define(function(require) {
               Adapt.trigger('popup:opened', this.$('.menu-item-inner'));
               this.$('.menu-item-title-inner').a11y_focus();
               this.$('.menu-item-overlay').on('click', _.bind(this.hideDetails, this));
-              this.setupEscapeKey();
             }
         },
 

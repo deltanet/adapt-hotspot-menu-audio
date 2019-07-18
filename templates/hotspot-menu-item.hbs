@@ -1,17 +1,17 @@
 <div class="menu-item-overlay"></div>
 <button role="button" class="base {{#if _graphicEnabled}}menu-item-graphic-button graphic-button-states{{else}}menu-item-hotspot{{/if}} {{#if _isVisited}}visited{{/if}} {{#if _isComplete}}complete{{/if}}" style="top:{{_hotspotMenuAudio._hotspotMenuItem._position._top}}%; left:{{_hotspotMenuAudio._hotspotMenuItem._position._left}}%" data-id="{{_id}}">{{_hotspotMenuAudio._hotspotMenuItem.title}}
 	{{#if _graphicEnabled}}
-	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}" tabindex="0"{{else}} class="a11y-ignore" aria-hidden="true" tabindex="-1"{{/if}}/>
-	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.srcHover}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}" class="graphic-button-hover" tabindex="0"{{else}} class="graphic-button-hover a11y-ignore" aria-hidden="true" tabindex="-1"{{/if}}/>
-	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.srcVisited}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}" class="graphic-button-visited" tabindex="0"{{else}} class="graphic-button-visited a11y-ignore" aria-hidden="true" tabindex="-1"{{/if}}/>
+	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}"{{else}} aria-hidden="true"{{/if}}/>
+	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.srcHover}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}" class="graphic-button-hover"{{else}} class="graphic-button-hover" aria-hidden="true"{{/if}}/>
+	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.srcVisited}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}" class="graphic-button-visited" {{else}} class="graphic-button-visited" aria-hidden="true"{{/if}}/>
 	{{/if}}
 </button>
-<div class="menu-item-inner {{#if _locked}}locked{{/if}}" aria-label="{{_globals._menu._hotspotMenuAudio.menuItem}}" {{#if _globals._menu._hotspotMenuAudio.menuItem}}tabindex="0"{{/if}}>
+<div class="menu-item-inner {{#if _locked}}locked{{/if}}" aria-label="{{_globals._menu._hotspotMenuAudio.menuItem}}">
 	<div class="menu-item-title">
-		<div class="menu-item-title-inner h3 accessible-text-block" role="heading" aria-level="2" tabindex="0">{{{displayTitle}}}</div>
+		<div class="menu-item-title-inner h3 accessible-text-block" role="heading" aria-level="2">{{{displayTitle}}}</div>
 	</div>
 	<div class="menu-item-body">
-		<div class="menu-item-body-inner">{{{a11y_text body}}}</div>
+		<div class="menu-item-body-inner">{{{compile body}}}</div>
 	</div>
 	<div class="menu-item-button">
     <button aria-label="{{linkText}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="{{#if _isVisited}}visited{{/if}} {{#if _isLocked}}disabled{{/if}} accessible-text-block" {{#if _isLocked}}disabled="disabled"{{/if}}>
@@ -27,7 +27,7 @@
     </button>
   </div>
 	{{#if duration}}
-		<div class="menu-item-duration accessible-text-block" role="region" tabindex="0">{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{/if}} {{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</div>
+		<div class="menu-item-duration accessible-text-block" role="region">{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{/if}} {{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</div>
 	{{/if}}
-	<button role="button" class="base menu-item-done icon icon-cross" tabindex="-1"></button>
+	<button class="base menu-item-done icon icon-cross"></button>
 </div>

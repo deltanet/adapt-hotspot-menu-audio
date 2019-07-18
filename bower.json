@@ -1,7 +1,7 @@
 {
   "name": "adapt-hotspot-menu-audio",
   "version": "2.1.4",
-  "framework": "^2.0.0",
+  "framework": ">=4",
   "homepage": "https://github.com/deltanet/adapt-hotspot-menu-audio",
   "displayName": "Hotspot Menu",
   "menu": "hotspot-menu-audio",

@@ -1,7 +1,7 @@
 {{#if _hotspotMenuAudio._audio._isEnabled}}
 <div class="audio-controls">
 	<div class="audio-inner">
-		<button class="audio-toggle" id="{{_id}}" role="button"></button>
+		<button class="audio-toggle" id="{{_id}}"></button>
 	</div>
 </div>
 {{/if}}
@@ -11,7 +11,7 @@
 			<div class="menu-header-inner">
 				{{#if displayTitle}}
 				<div class="menu-title">
-					<div class="menu-title-inner h1 accessible-text-block" role="heading" aria-level="1" tabindex="0">
+					<div class="menu-title-inner h1 accessible-text-block" role="heading" aria-level="1">
 						{{{displayTitle}}}
 					</div>
 				</div>
@@ -19,14 +19,14 @@
 				{{#if body}}
 				<div class="menu-body">
 					<div class="menu-body-inner accessible-text-block">
-						{{{a11y_text body}}}
+						{{{compile body}}}
 					</div>
 				</div>
 				{{/if}}
 				{{#if _hotspotMenuAudio.instruction}}
 				<div class="menu-instruction">
 					<div class="menu-instruction-inner accessible-text-block">
-						{{{a11y_text _hotspotMenuAudio.instruction}}}
+						{{{compile _hotspotMenuAudio.instruction}}}
 					</div>
 				</div>
 				{{/if}}
@@ -39,5 +39,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="aria-label relative a11y-ignore-focus prevent-default" tabindex="0" role="region">{{_globals._menu._hotspotMenuAudio.menuEnd}}</div>
+	<div class="aria-label relative a11y-ignore-focus prevent-default" role="region">{{_globals._menu._hotspotMenuAudio.menuEnd}}</div>
 </div>
