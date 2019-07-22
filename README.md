@@ -85,7 +85,7 @@ This sets the top and left position of the menu item relative to its container. 
 ````
 
 ----------------------------
-**Version number:**  2.1.4   
+**Version number:**  3.0.0   
 **Framework versions:**  4+     
 **Author / maintainer:** City and Guilds Kineo [cgkineo/adapt-hotspot-menu](https://github.com/cgkineo/adapt-hotspot-menu) / DeltaNet     
 **RTL support:** yes  
