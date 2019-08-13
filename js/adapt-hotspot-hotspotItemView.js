@@ -1,8 +1,7 @@
-define(function(require) {
-
-    var Backbone = require('backbone');
-    var Adapt = require('core/js/adapt');
-    var MenuView = require('core/js/views/menuView');
+define([
+    'core/js/adapt',
+    'core/js/views/menuView'
+], function(Adapt, MenuView) {
 
     var HotspotItemView = MenuView.extend({
 

@@ -11,6 +11,6 @@
     "adapt-plugin",
     "adapt-menu"
   ],
-  "license": "GPL-3.0",
+  "license": "GPLv3",
   "targetAttribute": "_hotspotMenuAudio"
 }
