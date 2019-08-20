@@ -1,6 +1,6 @@
 {{import_globals}}
 <div class="menu-item-overlay"></div>
-<button class="base {{#if _graphicEnabled}}menu-item-graphic-button graphic-button-states{{else}}menu-item-hotspot{{/if}} {{#if _isVisited}}visited{{/if}} {{#if _isComplete}}complete{{/if}}" style="top:{{_hotspotMenuAudio._hotspotMenuItem._position._top}}%; left:{{_hotspotMenuAudio._hotspotMenuItem._position._left}}%" data-id="{{_id}}">{{_hotspotMenuAudio._hotspotMenuItem.title}}
+<button  aria-label="{{displayTitle}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="base {{#if _graphicEnabled}}menu-item-graphic-button graphic-button-states{{else}}menu-item-hotspot{{/if}} {{#if _isVisited}}visited{{/if}} {{#if _isComplete}}complete{{/if}}" style="top:{{_hotspotMenuAudio._hotspotMenuItem._position._top}}%; left:{{_hotspotMenuAudio._hotspotMenuItem._position._left}}%" data-id="{{_id}}">{{_hotspotMenuAudio._hotspotMenuItem.title}}
 	{{#if _graphicEnabled}}
 	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}"{{else}} aria-hidden="true"{{/if}}/>
 	  <img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.srcHover}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}" class="graphic-button-hover"{{else}} class="graphic-button-hover" aria-hidden="true"{{/if}}/>
