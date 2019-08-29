@@ -85,8 +85,8 @@ This sets the top and left position of the menu item relative to its container. 
 ````
 
 ----------------------------
-**Version number:**  2.1.4   
-**Framework versions:**  ^2.0.0     
+**Version number:**  3.0.0   
+**Framework versions:**  4+     
 **Author / maintainer:** City and Guilds Kineo [cgkineo/adapt-hotspot-menu](https://github.com/cgkineo/adapt-hotspot-menu) / DeltaNet     
 **RTL support:** yes  
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge 12, IE 11, IE10, IE9, IE8, IE Mobile 11, Safari for iPhone (iOS 8+9), Safari for iPad (iOS 8+9), Safari 8, Opera  
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, IE Mobile 11, Safari 11+12 for macOS+iOS    

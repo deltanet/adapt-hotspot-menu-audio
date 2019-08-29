@@ -11,17 +11,18 @@
 
 	.menu-title {
 		color: @foreground-color-inverted;
-		padding: @menu-title-padding-top;
+		padding: @menu-body-padding-top;
 	}
 
 	.menu-body {
 		color: @foreground-color-inverted;
+		padding-bottom: @menu-body-padding-top;
 	}
 
 	.menu-instruction {
 		.instruction-text;
 		color: @foreground-color-inverted;
-		padding-bottom: @menu-title-padding-bottom;
+		padding-bottom: @menu-body-padding-top;
 
 		instr {
       color: @instruction-color;
@@ -42,7 +43,7 @@
 		}
 	}
 
-	.hotspot-items {
+	.js-children {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -217,7 +218,6 @@
 		position: absolute;
 		padding: @component-padding;
 		background: @background-color;
-		margin-top: 40px;
 		z-index: 100;
 
 		&.show-item {
@@ -274,8 +274,8 @@
 	}
 
 	.menu-item-title {
-		padding: @menu-body-padding;
-		font-size: @item-title-font-size + 4px;
+		padding: @menu-body-padding-top @menu-body-padding-sides 0 @menu-body-padding-sides;
+		.sub-title;
 	}
 
 	.menu-item-body {
@@ -283,7 +283,7 @@
 	}
 
 	.menu-item-button {
-		padding: @menu-body-padding;
+		padding: @menu-body-padding-top;
 		text-align: center;
 
 		button {
@@ -298,6 +298,27 @@
 		text-align: center;
 	}
 
+	.js-menu-item-progress {
+		text-align: center;
+		padding: @menu-body-padding-top;
+
+		.pagelevelprogress-indicator {
+			background-color: @menu-item-progress-color;
+			width: 100px;
+			height: 14px;
+		}
+
+		.pagelevelprogress-indicator-inner {
+			border: none;
+			height: 10px;
+		}
+
+		.pagelevelprogress-indicator-bar {
+			background-color: @menu-item-progress-fill-color;
+		}
+	}
+
+	/*
 	.page-level-progress-menu-item-indicator {
 		height: 8px;
 		background-color: @menu-item-progress-color;
@@ -311,6 +332,7 @@
 		background-color: @menu-item-progress-fill-color;
 		border-radius: 25px;
 	}
+	*/
 
 	.audio-inner {
 		display:inline;
