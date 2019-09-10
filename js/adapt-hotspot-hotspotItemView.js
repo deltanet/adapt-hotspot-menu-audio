@@ -64,7 +64,7 @@ define([
         },
 
         setVisitedIfBlocksComplete: function() {
-            var completedBlock = this.model.findDescendants('components').findWhere({_isComplete: true, _isOptional: false});
+            var completedBlock = _.findWhere(this.model.findDescendantModels('components'), {_isComplete: true, _isOptional: false});
             if (completedBlock != undefined) {
                 this.model.set('_isVisited', true);
             }
