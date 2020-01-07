@@ -41,7 +41,6 @@ define([
 
         postRender: function() {
             this.setReadyStatus();
-            this.$el.addClass("hotspot-menu");
             this.isPopupOpen = false;
 
             // Check for button type

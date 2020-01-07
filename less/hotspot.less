@@ -56,6 +56,8 @@
 
 	.menu-item {
 		position: static;
+		color: @foreground-color;
+
 		@media all and (max-width:@device-width-medium) {
 			width: 50%;
 			float:left;
@@ -78,7 +80,7 @@
 		display: block;
 
 		@media all and (max-width:@device-width-medium) {
-			display:none;
+			display: none;
 		}
 
   	img {
@@ -125,8 +127,12 @@
       	img.graphic-button-visited {
       		display:none;
       	}
-  		 }
+  		}
   	}
+
+		&.locked {
+			cursor: default;
+		}
   }
 
 	.menu-item-hotspot {
@@ -184,7 +190,7 @@
 		}
 
 		@media all and (max-width:@device-width-medium) {
-			display:none;
+			display: none;
 		}
 	}
 
@@ -269,7 +275,17 @@
 		}
 
 		@media all and (max-width:@device-width-medium) {
-			display:none;
+			display: none;
+		}
+	}
+
+	.menu-item-graphic {
+		@media all and (max-width:@device-width-medium) {
+			img {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
 		}
 	}
 
@@ -318,24 +334,8 @@
 		}
 	}
 
-	/*
-	.page-level-progress-menu-item-indicator {
-		height: 8px;
-		background-color: @menu-item-progress-color;
-		border: none;
-		border-radius: 25px;
-		clear: both;
-	}
-
-	.page-level-progress-menu-item-indicator-bar {
-		height: 8px;
-		background-color: @menu-item-progress-fill-color;
-		border-radius: 25px;
-	}
-	*/
-
 	.audio-inner {
-		display:inline;
+		display: inline;
     float: right;
 		.dir-rtl & {
 			float:left;

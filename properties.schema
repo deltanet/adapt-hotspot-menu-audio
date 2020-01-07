@@ -15,17 +15,17 @@
   },
   "properties": {
     "pluginLocations": {
-      "type":"object",
-      "required":true,
-      "properties":{
+      "type": "object",
+      "required": true,
+      "properties": {
         "config": {
-          "type":"object"
+          "type": "object"
         },
         "course": {
-          "type":"object"
+          "type": "object"
         },
         "contentobject": {
-          "type":"object",
+          "type": "object",
           "properties": {
             "_hotspotMenuAudio": {
               "type": "object",
@@ -81,7 +81,7 @@
                   "help": "If enabled the item popup will not be shown and the user will be directed directly to the page"
                 },
                 "_hotspotMenuItem": {
-                  "type":"object",
+                  "type": "object",
                   "required":false,
                   "title": "Menu Item",
                   "properties": {
@@ -129,10 +129,10 @@
                       "validators": []
                     },
                     "_position": {
-                      "type":"object",
+                      "type": "object",
                       "required": false,
                       "title": "Icon Position",
-                      "properties":{
+                      "properties": {
                         "_top": {
                           "type": "number",
                           "required": false,
@@ -142,7 +142,7 @@
                           "validators": []
                         },
                         "_left": {
-                          "type":"number",
+                          "type": "number",
                           "required": false,
                           "default": 0,
                           "title": "Left",
@@ -152,12 +152,12 @@
                       }
                     },
                     "_graphic": {
-                      "type":"object",
+                      "type": "object",
                       "required": false,
                       "title": "Button Graphics",
-                      "properties":{
+                      "properties": {
                         "src": {
-                          "type":"string",
+                          "type": "string",
                           "required": false,
                           "default": "",
                           "title": "Asset",
@@ -166,7 +166,7 @@
                           "help": "The image for the normal state"
                         },
                         "srcHover": {
-                          "type":"string",
+                          "type": "string",
                           "required": false,
                           "default": "",
                           "title": "Hover Asset",
@@ -175,7 +175,7 @@
                           "help": "The image for the hover state"
                         },
                         "srcVisited": {
-                          "type":"string",
+                          "type": "string",
                           "required": false,
                           "default": "",
                           "title": "Visited Asset",
@@ -183,8 +183,17 @@
                           "validators": [],
                           "help": "The image for the visited state"
                         },
+                        "locked": {
+                          "type": "string",
+                          "required": false,
+                          "default": "",
+                          "title": "Locked Asset",
+                          "inputType": "Asset:image",
+                          "validators": [],
+                          "help": "The image for the locked state"
+                        },
                         "alt": {
-                          "type":"string",
+                          "type": "string",
                           "required": false,
                           "default": "",
                           "title": "Alternative Text",
@@ -238,7 +247,7 @@
                       "type": "object",
                       "required": true,
                       "title": "Audio Asset",
-                      "properties":{
+                      "properties": {
                         "src": {
                           "type": "string",
                           "required": true,
@@ -255,13 +264,13 @@
           }
         },
         "article": {
-          "type":"object"
+          "type": "object"
         },
         "block": {
-          "type":"object"
+          "type": "object"
         },
         "component": {
-          "type":"object"
+          "type": "object"
         }
       }
     }
