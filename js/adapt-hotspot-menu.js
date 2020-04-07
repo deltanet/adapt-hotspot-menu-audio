@@ -35,7 +35,7 @@ define([
             });
 
             this.listenTo(Adapt, 'device:changed', this.deviceChanged);
-            this.listenTo(Adapt, "device:resize", this.deviceResize);
+            this.listenTo(Adapt, "menuView:ready device:resize", this.deviceResize);
 
             this.deviceChanged();
             this.deviceResize();
