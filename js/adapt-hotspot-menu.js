@@ -38,6 +38,7 @@ define([
             this.listenTo(Adapt, "device:resize", this.deviceResize);
 
             this.deviceChanged();
+            this.deviceResize();
 
             if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
               this.listenTo(Adapt, 'audio:updateAudioStatus', this.updateToggle);
@@ -144,9 +145,28 @@ define([
 
         deviceResize: function() {
           var menuWidth = this.$('.hotspot-container-image').outerWidth();
+          var menuHeight = this.$('.hotspot-container-inner').outerHeight();
+
+          var navigationHeight = $('.navigation').outerHeight();
+          var headerHeight = this.$('.menu-header').outerHeight();
+
           var decrease = this.startWidth - menuWidth;
           var percentageChanged = Math.round((decrease/this.startWidth)*100);
           var newSize = 100 - percentageChanged;
+
+          if (Adapt.device.screenSize === 'large') {
+            this.$('.js-children').css({
+                "height": menuHeight,
+                "top": navigationHeight+headerHeight,
+                "width": menuWidth
+            });
+          } else {
+            this.$('.js-children').css({
+                "height": "",
+                "top": "",
+                "width": ""
+            });
+          }
 
           this.$('.menu-item-graphic-button img').css({
               "max-width": newSize+"%",
