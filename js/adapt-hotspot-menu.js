@@ -38,7 +38,10 @@ define([
             this.listenTo(Adapt, "menuView:ready device:resize", this.deviceResize);
 
             this.deviceChanged();
-            this.deviceResize();
+
+            this.$('.hotspot-container-inner').imageready(function() {
+                this.deviceResize();
+            }.bind(this));
 
             if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
               this.listenTo(Adapt, 'audio:updateAudioStatus', this.updateToggle);
