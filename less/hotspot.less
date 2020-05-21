@@ -126,7 +126,7 @@
   		}
   	}
 
-		&.locked {
+		&.disabled {
 			cursor: default;
 		}
   }
@@ -160,9 +160,59 @@
 			font-weight: bold;
 			font-size: @sub-title-font-size;
 			padding: @item-padding;
+
+			&::before {
+				content: "";
+			  position: absolute;
+			  top: 100%;
+			  left: 50%;
+			  margin-left: -12px;
+			  border-width: 12px;
+			  border-style: solid;
+			  border-color: @item-text-color transparent transparent transparent;
+			}
+
+			&::after {
+				content: "";
+			  position: absolute;
+			  top: 100%;
+			  left: 50%;
+				margin-top: -4px;
+			  margin-left: -12px;
+			  border-width: 12px;
+			  border-style: solid;
+			  border-color: @button-color transparent transparent transparent;
+			}
+
+			&.disabled {
+				&::before {
+					content: "";
+				  position: absolute;
+				  top: 100%;
+				  left: 50%;
+				  margin-left: -12px;
+				  border-width: 12px;
+				  border-style: solid;
+				  border-color: @item-text-color-disabled transparent transparent transparent;
+					cursor: default;
+				}
+
+				&::after {
+					content: "";
+				  position: absolute;
+				  top: 100%;
+				  left: 50%;
+					margin-top: -4px;
+				  margin-left: -12px;
+				  border-width: 12px;
+				  border-style: solid;
+				  border-color: @button-color-disabled transparent transparent transparent;
+					cursor: default;
+				}
+			}
 		}
 
-		.no-touch & {
+		.no-touch &:not(.disabled) {
 			&:hover {
 				background-color: @button-color-hover;
 				border:2px solid @item-text-color;
@@ -171,7 +221,6 @@
 				&::after {
 					border-color: @button-color-hover transparent transparent transparent;
 				}
-
 			}
 		}
 
@@ -188,29 +237,6 @@
 		@media all and (max-width:@device-width-medium) {
 			display: none;
 		}
-	}
-
-	.title-enabled:before {
-		content: "";
-	  position: absolute;
-	  top: 100%;
-	  left: 50%;
-	  margin-left: -12px;
-	  border-width: 12px;
-	  border-style: solid;
-	  border-color: @item-text-color transparent transparent transparent;
-	}
-
-	.title-enabled:after {
-		content: "";
-	  position: absolute;
-	  top: 100%;
-	  left: 50%;
-		margin-top: -4px;
-	  margin-left: -12px;
-	  border-width: 12px;
-	  border-style: solid;
-	  border-color: @button-color transparent transparent transparent;
 	}
 
 	.menu-item-inner {

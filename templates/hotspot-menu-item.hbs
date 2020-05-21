@@ -1,6 +1,7 @@
 {{import_globals}}
 <div class="menu-item-overlay"></div>
-<button  aria-label="{{linkText}} {{displayTitle}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="base {{#if _graphicEnabled}}menu-item-graphic-button{{#unless _isLocked}} graphic-button-states{{/unless}}{{else}}menu-item-hotspot{{/if}}{{#if _isVisited}} visited{{/if}}{{#if _isComplete}} complete{{/if}}{{#if _isLocked}} locked{{/if}}" style="top:{{_hotspotMenuAudio._hotspotMenuItem._position._top}}%; left:{{_hotspotMenuAudio._hotspotMenuItem._position._left}}%" data-id="{{_id}}">{{_hotspotMenuAudio._hotspotMenuItem.title}}
+<button  aria-label="{{linkText}} {{displayTitle}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="base {{#if _graphicEnabled}}menu-item-graphic-button{{#unless _isLocked}} graphic-button-states{{/unless}}{{else}}menu-item-hotspot{{/if}}{{#if _isVisited}} visited{{/if}}{{#if _isComplete}} complete{{/if}}{{#if _isLocked}} disabled{{/if}}" style="top:{{_hotspotMenuAudio._hotspotMenuItem._position._top}}%; left:{{_hotspotMenuAudio._hotspotMenuItem._position._left}}%" data-id="{{_id}}" {{#if _isLocked}}disabled="disabled"{{/if}}>
+	{{_hotspotMenuAudio._hotspotMenuItem.title}}
 	{{#if _graphicEnabled}}
 		{{#if _isLocked}}
 			<img src="{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{else}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}{{/if}}" aria-hidden="true" />
