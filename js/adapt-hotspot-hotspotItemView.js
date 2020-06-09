@@ -32,7 +32,7 @@ define([
           }
           this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
 
-          if(this.type == "graphic") {
+          if (this.type == "graphic") {
             this.model.set('_graphicEnabled', true);
           }
 
