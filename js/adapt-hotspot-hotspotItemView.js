@@ -26,6 +26,7 @@ define([
         preRender: function() {
 
           this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
+          this.listenTo(Adapt, "device:changed", this.deviceChanged);
 
           if (!this.model.get('_isVisited')) {
             this.setVisitedIfBlocksComplete();
@@ -60,6 +61,8 @@ define([
                 this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._custom);
                 break;
             }
+
+            this.deviceChanged();
         },
 
         setVisitedIfBlocksComplete: function() {
@@ -132,6 +135,20 @@ define([
             if(event && event.preventDefault) event.preventDefault();
             if(this.model.get('_isLocked')) return;
             Backbone.history.navigate('#/id/' + this.model.get('_id'), {trigger: true});
+        },
+
+        deviceChanged: function() {
+          if (Adapt.device.screenSize === 'large') {
+            this.$('.menu-item-hotspot').css({
+              "top": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._top+'%',
+              "left": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._left+'%'
+            });
+          } else {
+            this.$('.menu-item-hotspot').css({
+              "top": "",
+              "left": ""
+            });
+          }
         }
 
     }, {
