@@ -143,8 +143,16 @@ define([
               "top": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._top+'%',
               "left": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._left+'%'
             });
+            this.$('.menu-item-graphic-button').css({
+              "top": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._top+'%',
+              "left": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._left+'%'
+            });
           } else {
             this.$('.menu-item-hotspot').css({
+              "top": "",
+              "left": ""
+            });
+            this.$('.menu-item-graphic-button').css({
               "top": "",
               "left": ""
             });
