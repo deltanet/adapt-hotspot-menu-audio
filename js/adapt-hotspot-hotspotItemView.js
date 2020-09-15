@@ -134,6 +134,8 @@ define([
         onClickMenuItemButton: function(event) {
             if(event && event.preventDefault) event.preventDefault();
             if(this.model.get('_isLocked')) return;
+
+            this.hideDetails();
             Backbone.history.navigate('#/id/' + this.model.get('_id'), {trigger: true});
         },
 
