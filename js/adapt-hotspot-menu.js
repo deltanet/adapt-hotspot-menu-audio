@@ -150,7 +150,7 @@ define([
           var menuWidth = this.$('.hotspot-container-image').outerWidth();
           var menuHeight = this.$('.hotspot-container-inner').outerHeight();
 
-          var navigationHeight = $('.navigation').outerHeight();
+          var navigationHeight = $('.nav').outerHeight();
           var headerHeight = this.$('.menu-header').outerHeight();
 
           var decrease = this.startWidth - menuWidth;

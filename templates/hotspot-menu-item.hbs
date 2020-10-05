@@ -1,6 +1,6 @@
 {{import_globals}}
 <div class="menu-item-overlay"></div>
-<button  aria-label="{{linkText}} {{displayTitle}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="base {{#if _graphicEnabled}}menu-item-graphic-button{{#unless _isLocked}} graphic-button-states{{/unless}}{{else}}menu-item-hotspot{{/if}}{{#if _isVisited}} visited{{/if}}{{#if _isComplete}} complete{{/if}}{{#if _isLocked}} disabled{{/if}}" data-id="{{_id}}" {{#if _isLocked}}disabled="disabled"{{/if}}>
+<button  aria-label="{{linkText}} {{displayTitle}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="base {{#if _graphicEnabled}}menu-item-graphic-button{{#unless _isLocked}} graphic-button-states{{/unless}}{{else}}menu-item-hotspot{{/if}}{{#if _isVisited}} is-visited{{/if}}{{#if _isComplete}} is-complete{{/if}}{{#if _isLocked}} is-disabled{{/if}}" data-id="{{_id}}" {{#if _isLocked}}disabled="disabled"{{/if}}>
 	{{_hotspotMenuAudio._hotspotMenuItem.title}}
 	{{#if _graphicEnabled}}
 		{{#if _isLocked}}
@@ -12,7 +12,7 @@
 		{{/if}}
 	{{/if}}
 </button>
-<div class="menu-item-inner {{#if _isLocked}}locked{{/if}}">
+<div class="menu-item-inner {{#if _isLocked}}is-locked{{/if}}">
 	<div class="menu-item-graphic">
     {{#if _isLocked}}
       <img src="{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{else}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}{{/if}}" aria-hidden="true" />
@@ -32,7 +32,7 @@
 	</div>
 	{{/if}}
 	<div class="menu-item-button">
-    <button aria-label="{{linkText}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="{{#if _isVisited}}visited{{/if}} {{#if _isLocked}}disabled{{/if}}" {{#if _isLocked}}disabled="disabled"{{/if}}>
+    <button aria-label="{{linkText}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="btn-text {{#if _isVisited}}is-visited{{/if}} {{#if _isLocked}}is-disabled{{/if}}" {{#if _isLocked}}disabled="disabled"{{/if}}>
       {{#if _isLocked}}
 				{{{_hotspotMenuAudio.linkLockedText}}}
 	      {{else}}
@@ -47,6 +47,6 @@
 	{{#if duration}}
 		<div class="menu-item-duration">{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{/if}} {{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</div>
 	{{/if}}
-	<button class="base menu-item-done icon icon-cross"></button>
+	<button class="btn-text base menu-item-done icon icon-cross"></button>
 	<div class="js-menu-item-progress"></div>
 </div>

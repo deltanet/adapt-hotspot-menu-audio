@@ -17,9 +17,9 @@ define([
                 'menu-item',
                 'menu-item-' + this.model.get('_id') ,
                 this.model.get('_classes'),
-                this.model.get('_isVisited') ? 'visited' : '',
-                this.model.get('_isComplete') ? 'completed' : '',
-                this.model.get('_isLocked') ? 'locked' : ''
+                this.model.get('_isVisited') ? 'is-visited' : '',
+                this.model.get('_isComplete') ? 'is-complete' : '',
+                this.model.get('_isLocked') ? 'is-locked' : ''
             ].join(' ');
         },
 
