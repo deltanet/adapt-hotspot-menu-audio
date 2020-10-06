@@ -6,9 +6,9 @@ define([
     var HotspotItemView = MenuView.extend({
 
         events: {
-            "click .menu-item-hotspot":"showDetails",
-            "click .menu-item-graphic-button":"showDetails",
-            "click .menu-item-done":"hideDetails",
+            'click .menu-item-hotspot':'showDetails',
+            'click .menu-item-graphic-button':'showDetails',
+            'click .menu-item-done':'hideDetails',
             'click .menu-item-button button' : 'onClickMenuItemButton'
         },
 
@@ -25,15 +25,15 @@ define([
 
         preRender: function() {
 
-          this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
-          this.listenTo(Adapt, "device:changed", this.deviceChanged);
+          this.listenTo(Adapt, 'hotspotMenu:itemOpen', this.checkIfShouldClose);
+          this.listenTo(Adapt, 'device:changed', this.deviceChanged);
 
           if (!this.model.get('_isVisited')) {
             this.setVisitedIfBlocksComplete();
           }
           this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
 
-          if (this.type == "graphic") {
+          if (this.type == 'graphic') {
             this.model.set('_graphicEnabled', true);
           }
 
@@ -46,19 +46,19 @@ define([
 
             // Check for button type
             switch (this.type) {
-              case "text":
-                this.$(".menu-item-hotspot").addClass("title-enabled");
-                this.$(".menu-item-hotspot").html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.text);
+              case 'text':
+                this.$('.menu-item-hotspot').addClass('title-enabled');
+                this.$('.menu-item-hotspot').html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.text);
                 break;
-              case "number":
-                this.$(".menu-item-hotspot").addClass("number-enabled");
-                this.$(".menu-item-hotspot").html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.number);
+              case 'number':
+                this.$('.menu-item-hotspot').addClass('number-enabled');
+                this.$('.menu-item-hotspot').html(this.model.get('_hotspotMenuAudio')._hotspotMenuItem.number);
                 break;
-              case "icon":
-                this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._icon);
+              case 'icon':
+                this.$('.menu-item-hotspot').addClass('icon-enabled icon '+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._icon);
                 break;
-              case "custom":
-                this.$(".menu-item-hotspot").addClass("icon-enabled icon "+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._custom);
+              case 'custom':
+                this.$('.menu-item-hotspot').addClass('icon-enabled icon '+this.model.get('_hotspotMenuAudio')._hotspotMenuItem._custom);
                 break;
             }
 
@@ -82,23 +82,23 @@ define([
               var $element = $(event.currentTarget);
 
               if (this.disableAnimation) {
-                  this.$('.menu-item-overlay').css("display", "block");
-                  this.$(".menu-item-inner").addClass("show-item");
+                  this.$('.menu-item-overlay').css('display', 'block');
+                  this.$('.menu-item-inner').addClass('show-item');
               } else {
                   this.$('.menu-item-overlay').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
-                    this.$('.menu-item-overlay').css("display", "block");
+                    this.$('.menu-item-overlay').css('display', 'block');
                   }, this)});
                   this.$('.menu-item-inner').velocity({ opacity: 0 }, {duration:0}).velocity({ opacity: 1 }, {duration:400, begin: _.bind(function() {
-                    this.$(".menu-item-inner").addClass("show-item");
+                    this.$('.menu-item-inner').addClass('show-item');
                   }, this)});
               }
 
-              Adapt.trigger("hotspotMenu:itemOpen", $element.attr("data-id"));
+              Adapt.trigger('hotspotMenu:itemOpen', $element.attr('data-id'));
               // Audio
               if(Adapt.audio.audioClip[this.model.get('_hotspotMenuAudio')._audio._channel].status==1){
                   // Check if audio is set to autoplay
-                  if(this.model.get("_hotspotMenuAudio")._audio._isEnabled && this.model.get("_hotspotMenuAudio")._audio._autoplay){
-                      Adapt.trigger('audio:playAudio', this.model.get("_hotspotMenuAudio")._audio._media.src, this.model.get("_id"), this.model.get('_hotspotMenuAudio')._audio._channel);
+                  if(this.model.get('_hotspotMenuAudio')._audio._isEnabled && this.model.get('_hotspotMenuAudio')._audio._autoplay){
+                      Adapt.trigger('audio:playAudio', this.model.get('_hotspotMenuAudio')._audio._media.src, this.model.get('_id'), this.model.get('_hotspotMenuAudio')._audio._channel);
                   }
               }
               Adapt.trigger('popup:opened', this.$('.menu-item-inner'));
@@ -110,15 +110,15 @@ define([
         hideDetails: function(event) {
             if(event) event.preventDefault();
             this.isPopupOpen = false;
-            this.$(".menu-item-inner").removeClass("show-item");
-            if(this.model.get("_hotspotMenuAudio")._audio._isEnabled){
+            this.$('.menu-item-inner').removeClass('show-item');
+            if(this.model.get('_hotspotMenuAudio')._audio._isEnabled){
                 Adapt.trigger('audio:pauseAudio', this.model.get('_hotspotMenuAudio')._audio._channel);
             }
             if (this.disableAnimation) {
-                this.$('.menu-item-overlay').css("display", "none");
+                this.$('.menu-item-overlay').css('display', 'none');
             } else {
                 this.$('.menu-item-overlay').velocity({ opacity: 0 }, {duration:400, complete:_.bind(function() {
-                  this.$('.menu-item-overlay').css("display", "none");
+                  this.$('.menu-item-overlay').css('display', 'none');
                 }, this)});
             }
             this.$('.menu-item-overlay').off('click');
@@ -126,7 +126,7 @@ define([
         },
 
         checkIfShouldClose: function(id) {
-            if(this.model.get("_id") != id) {
+            if(this.model.get('_id') != id) {
                 this.hideDetails();
             }
         },
@@ -142,21 +142,21 @@ define([
         deviceChanged: function() {
           if (Adapt.device.screenSize === 'large') {
             this.$('.menu-item-hotspot').css({
-              "top": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._top+'%',
-              "left": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._left+'%'
+              'top': this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._top+'%',
+              'left': this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._left+'%'
             });
             this.$('.menu-item-graphic-button').css({
-              "top": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._top+'%',
-              "left": this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._left+'%'
+              'top': this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._top+'%',
+              'left': this.model.get('_hotspotMenuAudio')._hotspotMenuItem._position._left+'%'
             });
           } else {
             this.$('.menu-item-hotspot').css({
-              "top": "",
-              "left": ""
+              'top': '',
+              'left': ''
             });
             this.$('.menu-item-graphic-button').css({
-              "top": "",
-              "left": ""
+              'top': '',
+              'left': ''
             });
           }
         }
