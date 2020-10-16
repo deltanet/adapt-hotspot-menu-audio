@@ -24,13 +24,18 @@ define([
         },
 
         preRender: function() {
-
           this.listenTo(Adapt, "hotspotMenu:itemOpen", this.checkIfShouldClose);
           this.listenTo(Adapt, "device:changed", this.deviceChanged);
 
-          if (!this.model.get('_isVisited')) {
-            this.setVisitedIfBlocksComplete();
+          this.model.checkCompletionStatus();
+          this.model.checkInteractionCompletionStatus();
+
+          if (this.model.get('_isComplete')) {
+            this.model.set('_isVisited', true);
+          } else {
+            this.setVisitedIfAnyComponentsComplete();
           }
+
           this.type = this.model.get('_hotspotMenuAudio')._hotspotMenuItem._type;
 
           if (this.type == "graphic") {
@@ -65,11 +70,17 @@ define([
             this.deviceChanged();
         },
 
-        setVisitedIfBlocksComplete: function() {
-            var completedBlock = _.findWhere(this.model.findDescendantModels('components'), {_isComplete: true, _isOptional: false});
-            if (completedBlock != undefined) {
-                this.model.set('_isVisited', true);
+        setVisitedIfAnyComponentsComplete: function() {
+          var completedComponents = this.model.findDescendantModels('components', {
+            where: {
+              _isComplete: true,
+              _isOptional: false
             }
+          });
+
+          if (completedComponents.length > 0) {
+            this.model.set('_isVisited', true);
+          }
         },
 
         showDetails: function(event) {
