@@ -1,9 +1,9 @@
 define([
     'core/js/adapt',
-    'core/js/views/menuView'
-], function(Adapt, MenuView) {
+    'core/js/views/menuItemView'
+], function(Adapt, MenuItemView) {
 
-    var HotspotItemView = MenuView.extend({
+    var HotspotItemView = MenuItemView.extend({
 
         events: {
             'click .menu-item-hotspot':'showDetails',
@@ -102,7 +102,7 @@ define([
                   }
               }
               Adapt.trigger('popup:opened', this.$('.menu-item-inner'));
-              this.$('.menu-item-title-inner').a11y_focus();
+              Adapt.a11y.focusFirst($('.menu-item-title-inner'));
               this.$('.menu-item-overlay').on('click', _.bind(this.hideDetails, this));
             }
         },
