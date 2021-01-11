@@ -1,77 +1,29 @@
-.hotspot-menu {
-	background: @menu-item;
+.hotspotmenu-item {
+	position: static;
 
-	.menu-header {
-		padding: @menu-header-padding-ver @menu-header-padding-hoz;
-	}
+	@media all and (max-width:@device-width-medium) {
+		width: 50%;
+		float: left;
 
-	.menu-header-inner {
-		text-align: center;
-	}
-
-	.menu-title {
-		color: @menu-item-inverted;
-		padding: @menu-title-margin;
-	}
-
-	.menu-body {
-		color: @menu-item-inverted;
-		padding-bottom: @menu-body-margin;
-	}
-
-	.menu-instruction {
-		.instruction-text;
-		color: @menu-item-inverted;
-		padding-bottom: @menu-instruction-margin;
-
-		instr {
-      color: @item-color;
-    }
-	}
-
-	.hotspot-container-inner {
-		@media all and (max-width:@device-width-medium) {
-			padding: @menu-padding-ver, @menu-padding-hoz;
-		}
-	}
-
-	.hotspot-container-image {
-		display: block;
-		@media all and (max-width:@device-width-medium) {
-			display: none;
-		}
-	}
-
-	.js-children {
-		position: absolute;
-
-		@media all and (max-width:@device-width-medium) {
-			position: static;
-		}
-	}
-
-	.menu-item {
-		position: static;
-		color: @menu-item-inverted;
-
-		@media all and (max-width:@device-width-medium) {
-			width: 50%;
-			float:left;
-			&.nth-child-odd {
-				.menu-item-inner {
-					margin-right: 10px;
-				}
+		&.nth-child-odd {
+			.menu-item__inner {
+				margin-right: 10px;
 			}
+		}
 
-			&.nth-child-even {
-				.menu-item-inner {
-					margin-left: 10px;
-				}
+		&.nth-child-even {
+			.menu-item__inner {
+				margin-left: 10px;
 			}
 		}
 	}
 
-	.menu-item-graphic-button {
+	@media all and (max-width:@device-width-medium) {
+		width: 100%;
+		margin-bottom: @menu-padding-ver;
+	}
+
+	&__graphic-button {
 		position: absolute;
 		display: block;
 
@@ -132,27 +84,27 @@
 		}
   }
 
-	.menu-item-hotspot {
+	&__hotspot {
 		position: absolute;
 		display: block;
 
 		color: @menu-item-btn-color-inverted;
 		background-color: @menu-item-btn-color;
-		border:2px solid @menu-item-btn-color;
+		border: 2px solid @menu-item-btn-color;
 
 		text-align: center;
 
 		&.number-enabled {
-			width:50px;
-			height:50px;
+			width: 50px;
+			height: 50px;
 			border-radius: 50%;
 			font-weight: bold;
 			font-size: @icon-size;
 		}
 
 		&.icon-enabled {
-			width:50px;
-			height:50px;
+			width: 50px;
+			height: 50px;
 			border-radius: 50%;
 		}
 
@@ -216,8 +168,12 @@
 		.no-touch &:not(.is-disabled) {
 			&:hover {
 				background-color: @btn-color-hover;
-				border:2px solid @btn-color-inverted;
+				border: 2px solid @btn-color-inverted;
 				color: @btn-color-inverted-hover;
+
+				&::before {
+					border-color: @btn-color-inverted transparent transparent transparent;
+				}
 
 				&::after {
 					border-color: @btn-color-hover transparent transparent transparent;
@@ -226,7 +182,19 @@
 		}
 
 		&.is-visited {
+			background-color: @visited;
+			border: 2px solid @visited;
+			color: @visited-inverted;
+
+			&::after {
+				color: @visited-inverted;
+				border-color: @visited transparent transparent transparent;
+			}
+		}
+
+		&.is-disabled {
 			background-color: @disabled;
+			border: 2px solid @disabled;
 			color: @disabled-inverted;
 
 			&::after {
@@ -240,32 +208,35 @@
 		}
 	}
 
-	.menu-item-inner {
+	&__inner {
 		display: none;
 		width: 50%;
 		left: 25%;
 		position: absolute;
 		padding: @menu-padding-ver @menu-padding-hoz;
-		background: @menu-item;
+		background-color: @menu-item;
+    color: @menu-item-inverted;
 		z-index: 100;
 
 		&.show-item {
 			display:block;
 		}
+
 		@media all and (max-width:@device-width-medium) {
-			display:block;
+			display: block;
 			position: static;
-			width:auto;
+			width: auto;
 			left: 0;
+			margin: 0;
 		}
 	}
 
-	.menu-item-inner.is-disabled {
+	&__inner.is-disabled {
 		cursor: not-allowed;
 		opacity: .5;
 	}
 
-	.menu-item-overlay {
+	&__overlay {
 		display: none;
 		position: fixed;
 		top: 0;
@@ -273,114 +244,107 @@
 		bottom: 0;
 		left: 0;
 		z-index: 99;
-		background-color: @menu-item;
+		background-color: fade(@shadow, 50%);
 	}
 
-	.menu-item-done {
+	&__done {
 		position: absolute;
 		top: @menu-padding-ver;
 		right: @menu-padding-hoz;
-		color: @btn-color-inverted;
 		padding: @item-padding;
+
+		background-color: @menu-item;
+    color: @menu-item-btn-color;
+
+    .no-touch &:hover {
+      background-color: @menu-item;
+      color: @menu-item-btn-color-hover;
+      .transition(background-color @duration ease-in, color @duration ease-in;);
+    }
 
 		.dir-rtl & {
 			right: inherit;
 			left: @menu-padding-hoz;
     }
 
-		.no-touch & {
-			&:hover {
-				color: @btn-color-hover;
-			}
-		}
-
 		@media all and (max-width:@device-width-medium) {
 			display: none;
 		}
 	}
 
-	.menu-item-graphic {
+	&__graphic {
 		img {
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
-			min-width: auto;
+			min-width: 0;
 		}
 	}
 
-	.menu-item-title {
-		padding: @menu-padding-ver @menu-padding-hoz 0 @menu-padding-hoz;
-	}
+	&__title {
+    margin-bottom: @menu-item-title-margin;;
+    .menu-item-title;
+  }
 
-	.menu-item-body {
-		padding: @menu-body-margin;
-	}
+  &__body {
+    margin-bottom: @menu-item-body-margin;
+    .menu-item-body;
+  }
 
-	.menu-item-button {
-		padding: @btn-padding;
-		text-align: center;
+  &__body a {
+    .link-text;
+  }
 
-		button {
-			&.is-visited {
-				background-color: @disabled;
-				color: @disabled-inverted;
-			}
-		}
-	}
+  &__progress {
+    text-align: center;
+		margin-top: @menu-item-progress-margin;
+    margin-bottom: @menu-item-progress-margin;
+  }
 
-	.menu-item-duration {
-		text-align: center;
-	}
-
-	.js-menu-item-progress {
-		text-align: center;
-		padding: @menu-padding-ver;
-
-		.pagelevelprogress-indicator {
-			background-color: @menu-item-progress;
-			width: 100px;
-			height: 14px;
-		}
-
-		.pagelevelprogress-indicator-inner {
-			border: none;
-			height: 10px;
-		}
-
-		.pagelevelprogress-indicator-bar {
-			background-color: @menu-item-progress-inverted;
-		}
-	}
-
-	.audio-inner {
-		display: inline;
-    float: right;
-		.dir-rtl & {
-			float:left;
-		}
-	}
-
-	.audio-toggle {
-    color: @item-color-inverted;
-    background-color: @item-color;
+  &__details-inner {
     padding: @item-padding;
-    &:hover{
-      color: @item-color-inverted-hover;
-      background-color: @item-color-hover;
+  }
+
+  &__button-container {
+    text-align: center;
+  }
+
+  &__duration {
+    margin-top: @menu-item-duration-margin;
+    .menu-item-body;
+    text-align: center;
+  }
+
+  .pagelevelprogress {
+    &__indicator {
+      display: inline-block;
+      width: 6rem;
     }
-    &.hidden {
-	    display: none;
-	  }
-	}
 
-	@media all and (max-width:@device-width-medium) {
-		.menu-item {
-			width: 100%;
-			margin-bottom: @menu-padding-ver;
-			.menu-item-inner {
-				margin: 0;
-			}
-	  }
-	}
+    &__indicator-inner {
+      height: @icon-size / 2.5;
+    }
+  }
 
+  &__button {
+    background-color: @menu-item-btn-color;
+    color: @menu-item-btn-color-inverted;
+
+    .no-touch &:not(.is-disabled):not(.is-locked):hover {
+      background-color: @menu-item-btn-color-hover;
+      color: @menu-item-btn-color-inverted-hover;
+      .transition(background-color @duration ease-in, color @duration ease-in;);
+    }
+  }
+
+  &__button.is-locked,
+  &__button.is-disabled {
+    background-color: @disabled;
+    color: @disabled-inverted;
+  }
+
+  &__button.is-visited {
+    background-color: @visited;
+    color: @visited-inverted;
+  }
 }

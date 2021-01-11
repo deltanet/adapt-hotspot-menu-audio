@@ -1,48 +1,67 @@
 {{import_globals}}
+
 {{#if _hotspotMenuAudio._audio._isEnabled}}
-<div class="audio-controls">
-	<div class="audio-inner">
-		<button class="audio-toggle" id="{{_id}}"></button>
-	</div>
+<div class="audio__inner">
+	<button class="btn-icon audio__controls js-audio-toggle" id="{{_id}}">
+		<div class="audio__controls-icon"></div>
+	</button>
 </div>
 {{/if}}
-<div class="menu-container">
-	<div class='menu-container-inner hotspot-menu-inner u-clearfix'>
-		<div class="menu-header">
-			<div class="menu-header-inner">
-				{{#if displayTitle}}
-				<div class="menu-title">
-					{{#unless _disableAccessibleState}}
-						<div class="js-heading"></div>
-					{{/unless}}
-					<div class="menu-title-inner h1" {{#unless _disableAccessibleState}}aria-hidden="true"{{/unless}}>
-						{{{compile displayTitle}}}
-					</div>
-				</div>
-				{{/if}}
-				{{#if body}}
-				<div class="menu-body">
-					<div class="menu-body-inner">
-						{{{compile body}}}
-					</div>
-				</div>
-				{{/if}}
-				{{#if _hotspotMenuAudio.instruction}}
-				<div class="menu-instruction">
-					<div class="menu-instruction-inner">
-						{{{compile _hotspotMenuAudio.instruction}}}
-					</div>
-				</div>
-				{{/if}}
-			</div>
-		</div>
-		<div class="hotspot-container">
-			<div class="hotspot-container-inner">
-				<img class="hotspot-container-image" src="{{_graphic.src}}" alt="{{_graphic.alt}}" />
-				<div class="js-children u-clearfix" role="list">
 
-				</div>
+<div class="menu__inner hotspotmenu__inner u-clearfix">
+	{{#any displayTitle subtitle body instruction}}
+	<div class="menu__header hotspotmenu__header">
+	   <div class="menu__header-inner hotspotmenu__header-inner">
+
+			 {{#if displayTitle}}
+			 <div class="menu__title hotspotmenu__title">
+
+				 {{#unless _disableAccessibleState}}
+				 <div class="js-heading"></div>
+				 {{/unless}}
+
+				 <div class="menu__title-inner hotspotmenu__title-inner" {{#unless _disableAccessibleState}}aria-hidden="true"{{/unless}}>
+					 {{{compile displayTitle}}}
+				 </div>
+
+			 </div>
+			 {{/if}}
+
+			 {{#if subtitle}}
+			 <div class="menu__subtitle hotspotmenu__subtitle">
+				 <div class="menu__subtitle-inner hotspotmenu__subtitle-inner">
+					 {{{compile subtitle}}}
+				 </div>
+			 </div>
+			 {{/if}}
+
+			 {{#if body}}
+			 <div class="menu__body hotspotmenu__body">
+				 <div class="menu__body-inner hotspotmenu__body-inner">
+					 {{{compile body}}}
+				 </div>
+			 </div>
+			 {{/if}}
+
+			 {{#if _hotspotMenuAudio.instruction}}
+			 <div class="menu__instruction hotspotmenu__instruction">
+				 <div class="menu__instruction-inner hotspotmenu__instruction-inner">
+					 {{{compile _hotspotMenuAudio.instruction}}}
+				 </div>
+			 </div>
+			 {{/if}}
+
+		 </div>
+	 </div>
+	 {{/any}}
+
+	 <div class="hotspotmenu-container">
+		<div class="hotspotmenu-container__inner">
+			<img class="hotspotmenu-container__image" src="{{_graphic.src}}" alt="{{_graphic.alt}}" />
+			<div class="js-children u-clearfix" role="list">
+				{{!-- Menu items render here --}}
 			</div>
 		</div>
 	</div>
+
 </div>

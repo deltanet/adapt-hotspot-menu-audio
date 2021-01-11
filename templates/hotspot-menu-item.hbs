@@ -1,6 +1,8 @@
 {{import_globals}}
-<div class="menu-item-overlay"></div>
-<button  aria-label="{{linkText}} {{displayTitle}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="base {{#if _graphicEnabled}}menu-item-graphic-button{{#unless _isLocked}} graphic-button-states{{/unless}}{{else}}menu-item-hotspot{{/if}}{{#if _isVisited}} is-visited{{/if}}{{#if _isComplete}} is-complete{{/if}}{{#if _isLocked}} is-disabled{{/if}}" data-id="{{_id}}" {{#if _isLocked}}disabled="disabled"{{/if}}>
+
+<div class="hotspotmenu-item__overlay"></div>
+
+<button class="{{#if _graphicEnabled}}hotspotmenu-item__graphic-button{{#unless _isLocked}} graphic-button-states{{/unless}}{{else}}hotspotmenu-item__hotspot{{/if}}{{#if _isVisited}} is-visited{{/if}}{{#if _isComplete}} is-complete{{/if}}{{#if _isLocked}} is-disabled{{/if}} js-hotspotmenu-hotspot-btn" aria-label="{{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}} {{linkText}} {{displayTitle}}" data-id="{{_id}}"{{#if _isLocked}} disabled="disabled"{{/if}}>
 	{{_hotspotMenuAudio._hotspotMenuItem.title}}
 	{{#if _graphicEnabled}}
 		{{#if _isLocked}}
@@ -12,41 +14,73 @@
 		{{/if}}
 	{{/if}}
 </button>
-<div class="menu-item-inner {{#if _isLocked}}is-locked{{/if}}">
-	<div class="menu-item-graphic">
+
+<div class="menu-item__inner hotspotmenu-item__inner{{#if _isLocked}} is-locked{{/if}}">
+
+	{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.src}}
+	<div class="hotspotmenu-item__graphic">
     {{#if _isLocked}}
       <img src="{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{else}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}{{/if}}" aria-hidden="true" />
     {{else}}
 			<img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}"{{else}} aria-hidden="true"{{/if}} />
 		{{/if}}
   </div>
-	{{#if displayTitle}}
-	<div class="menu-item-title">
-		<div class="js-heading" data-a11y-heading-type="menuItem"></div>
-		<div class="menu-item-title-inner h3 accessible-text-block" aria-hidden="true">{{{compile displayTitle}}}</div>
+	{{/if}}
+
+	<div class="menu-item__details hotspotmenu-item__details">
+    <div class="menu-item__details-inner hotspotmenu-item__details-inner">
+
+			{{#if displayTitle}}
+			<div class="menu-item__title hotspotmenu-item__title">
+				<div class="js-heading" data-a11y-heading-type="menuItem"></div>
+
+				<div class="menu-item__title-inner hotspotmenu-item__title-inner accessible-text-block" aria-hidden="true">
+					{{{compile displayTitle}}}
+				</div>
+			</div>
+			{{/if}}
+
+			{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}}{{a11y_aria_image _hotspotMenuAudio._hotspotMenuItem._graphic.alt}}{{/if}}
+
+			{{#if body}}
+			<div class="menu-item__body hotspotmenu-item__body">
+				<div class="menu-item__body-inner hotspotmenu-item__body-inner">
+					{{{compile body}}}
+				</div>
+			</div>
+			{{/if}}
+
+			<div class="menu-item__button-container hotspotmenu-item__button-container">
+		    <button class="btn-text menu-item__button hotspotmenu-item__button js-btn-click {{#if _isVisited}}is-visited{{/if}} {{#if _isLocked}}is-locked{{/if}}" aria-label="{{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}} {{linkText}}"{{#if _isLocked}} disabled="disabled"{{/if}}>
+		      {{#if _isLocked}}
+						{{{_hotspotMenuAudio.linkLockedText}}}
+			      {{else}}
+			      {{#if _isVisited}}
+			      	{{{_hotspotMenuAudio.linkVisitedText}}}
+			      {{else}}
+			      	{{{linkText}}}
+			      {{/if}}
+		      {{/if}}
+		    </button>
+		  </div>
+
+			{{#if duration}}
+			<div class="menu-item__duration hotspotmenu-item__duration">
+        <div class="menu-item__duration-inner hotspotmenu-item__duration-inner">
+					{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{else}}{{{_hotspotMenuAudio.durationLabel}}}{{/if}} {{{duration}}}
+				</div>
+			</div>
+			{{/if}}
+
+			<div class="menu-item__progress hotspotmenu-item__progress js-menu-item-progress">
+		    {{!-- Menu item progress bar will render in here --}}
+		  </div>
+
+			<button class="hotspotmenu-item__done js-hotspotmenu-close-btn">
+				<div class="icon icon-cross"></div>
+			</button>
+
+		</div>
 	</div>
-	{{/if}}
-	{{#if body}}
-	<div class="menu-item-body">
-		<div class="menu-item-body-inner">{{{compile body}}}</div>
-	</div>
-	{{/if}}
-	<div class="menu-item-button">
-    <button aria-label="{{linkText}} {{#if _isVisited}}{{_globals._accessibility._ariaLabels.visited}}{{/if}}" class="btn-text {{#if _isVisited}}is-visited{{/if}} {{#if _isLocked}}is-disabled{{/if}}" {{#if _isLocked}}disabled="disabled"{{/if}}>
-      {{#if _isLocked}}
-				{{{_hotspotMenuAudio.linkLockedText}}}
-	      {{else}}
-	      {{#if _isVisited}}
-	      	{{{_hotspotMenuAudio.linkVisitedText}}}
-	      {{else}}
-	      	{{{linkText}}}
-	      {{/if}}
-      {{/if}}
-    </button>
-  </div>
-	{{#if duration}}
-		<div class="menu-item-duration">{{#if _globals._menu._hotspotMenuAudio.durationLabel}}{{{_globals._menu._hotspotMenuAudio.durationLabel}}}{{/if}} {{{_hotspotMenuAudio.durationLabel}}} {{{duration}}}</div>
-	{{/if}}
-	<button class="btn-text base menu-item-done icon icon-cross"></button>
-	<div class="js-menu-item-progress"></div>
+
 </div>

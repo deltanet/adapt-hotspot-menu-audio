@@ -1,0 +1,56 @@
+.hotspotmenu {
+	&__inner {
+    margin-bottom: @menu-title-margin;
+  }
+
+  &__header-inner {
+    .l-container-padding(@menu-header-padding-ver, @menu-header-padding-hoz);
+  }
+
+  &__title {
+    .menu-title;
+    color: @heading-color;
+  }
+
+  &__subtitle {
+		margin-top: @menu-title-margin;
+    .menu-subtitle;
+		color: @heading-color;
+  }
+
+  &__body {
+		margin-top: @menu-title-margin;
+    .menu-body;
+  }
+
+  &__instruction {
+		margin-top: @menu-instruction-margin;
+    .menu-instruction;
+  }
+
+  &__body a,
+  &__instruction a {
+    .link-text;
+  }
+
+	&-container__inner {
+		@media all and (max-width:@device-width-medium) {
+			padding: @menu-padding-ver, @menu-padding-hoz;
+		}
+	}
+
+	&-container__image {
+		display: block;
+		@media all and (max-width:@device-width-medium) {
+			display: none;
+		}
+	}
+
+	.js-children {
+		position: absolute;
+
+		@media all and (max-width:@device-width-medium) {
+			position: static;
+		}
+	}
+}
