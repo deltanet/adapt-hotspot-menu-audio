@@ -95,6 +95,7 @@
 			font-weight: bold;
 			font-size: @menu-subtitle-size;
 			padding: @item-padding;
+			border: 2px solid @btn-color-inverted;
 
 			&::before {
 				content: "";
@@ -104,7 +105,7 @@
 			  margin-left: -12px;
 			  border-width: 12px;
 			  border-style: solid;
-			  border-color: @menu-item-btn-color transparent transparent transparent;
+			  border-color: @btn-color-inverted transparent transparent transparent;
 			}
 
 			&::after {
@@ -120,6 +121,8 @@
 			}
 
 			&.is-disabled {
+				border: 2px solid @disabled-inverted;
+
 				&::before {
 					content: "";
 				  position: absolute;
@@ -128,7 +131,7 @@
 				  margin-left: -12px;
 				  border-width: 12px;
 				  border-style: solid;
-				  border-color: @disabled transparent transparent transparent;
+				  border-color: @disabled-inverted transparent transparent transparent;
 					cursor: default;
 				}
 
@@ -165,8 +168,12 @@
 
 		&.is-visited {
 			background-color: @visited;
-			border: 2px solid @visited;
+			border: 2px solid @visited-inverted;
 			color: @visited-inverted;
+
+			&::before {
+				border-color: @visited-inverted transparent transparent transparent;
+			}
 
 			&::after {
 				color: @visited-inverted;
@@ -176,12 +183,12 @@
 
 		&.is-disabled {
 			background-color: @disabled;
-			border: 2px solid @disabled;
+			border: 2px solid @disabled-inverted;
 			color: @disabled-inverted;
 
 			&::after {
 				color: @disabled-inverted;
-				border-color: @disabled transparent transparent transparent;
+				border-color: @disabled-inverted transparent transparent transparent;
 			}
 		}
 
