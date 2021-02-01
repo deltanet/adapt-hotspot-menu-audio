@@ -17,6 +17,10 @@ define([
       }, this);
     },
 
+    events: {
+      'click .js-audio-toggle': 'toggleAudio'
+    },
+
     postRender: function() {
       var nthChild = 0;
       this.model.getChildren().each(function(item) {
@@ -42,7 +46,95 @@ define([
         this.deviceResize();
       }.bind(this));
 
+      if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
+        this.listenTo(Adapt, 'audio:updateAudioStatus', this.updateToggle);
+        this.listenToOnce(Adapt, 'remove', this.removeListeners);
+        this.setupAudio();
+      }
+
       this.startWidth = this.$('.hotspotmenu-container__image').outerWidth();
+    },
+
+    setupAudio: function() {
+      this.audioChannel = this.model.get('_hotspotMenuAudio')._audio._channel;
+      this.elementId = this.model.get('_id');
+      this.audioFile = this.model.get('_hotspotMenuAudio')._audio._media.src;
+      Adapt.audio.audioClip[this.audioChannel].newID = this.elementId;
+      this.audioIcon = Adapt.audio.iconPlay;
+      this.pausedTime = '';
+
+      // Autoplay
+      if (Adapt.audio.autoPlayGlobal || this.model.get('_hotspotMenuAudio')._audio._autoplay){
+        this.canAutoplay = true;
+      } else {
+        this.canAutoplay = false;
+      }
+
+      // Add audio icon
+      this.$('.audio__controls-icon').addClass(this.audioIcon);
+
+      // Hide controls if set in JSON or if audio is turned off
+      if (this.model.get('_hotspotMenuAudio')._audio._showControls==false || Adapt.audio.audioClip[this.audioChannel].status==0){
+        this.$('.audio__controls').addClass('is-hidden');
+      }
+
+      // Set listener for when clip ends
+      $(Adapt.audio.audioClip[this.audioChannel]).on('ended', _.bind(this.onAudioEnded, this));
+
+      // Play audio if autoplay is true
+      if (this.canAutoplay) {
+        // Check if audio is set to on
+        if (Adapt.audio.audioClip[this.audioChannel].status==1){
+          Adapt.trigger('audio:playAudio', this.audioFile, this.elementId, this.audioChannel);
+        }
+      }
+    },
+
+    onAudioEnded: function() {
+      Adapt.trigger('audio:audioEnded', this.audioChannel);
+    },
+
+    toggleAudio: function(event) {
+      if (event) event.preventDefault();
+
+      Adapt.audio.audioClip[this.audioChannel].onscreenID = '';
+
+      if ($(event.currentTarget).hasClass('playing')) {
+        this.pauseAudio();
+      } else {
+        this.playAudio();
+      }
+    },
+
+    playAudio: function () {
+      if (Adapt.audio.pauseStopAction == 'pause') {
+        Adapt.audio.audioClip[this.audioChannel].play(this.pausedTime);
+        this.$('.audio__controls-icon').removeClass(Adapt.audio.iconPlay);
+        this.$('.audio__controls-icon').addClass(Adapt.audio.iconPause);
+        this.$('.audio__controls').addClass('playing');
+      } else {
+        Adapt.trigger('audio:playAudio', this.audioFile, this.elementId, this.audioChannel);
+      }
+    },
+
+    pauseAudio: function () {
+      if (Adapt.audio.pauseStopAction == 'pause') {
+        this.pausedTime = Adapt.audio.audioClip[this.audioChannel].currentTime;
+        Adapt.audio.audioClip[this.audioChannel].pause();
+        this.$('.audio__controls-icon').removeClass(Adapt.audio.iconPause);
+        this.$('.audio__controls-icon').addClass(Adapt.audio.iconPlay);
+        this.$('.audio__controls').removeClass('playing');
+      } else {
+        Adapt.trigger('audio:pauseAudio', this.audioChannel);
+      }
+    },
+
+    updateToggle: function(){
+      if (Adapt.audio.audioStatus == 1 && this.model.get('_hotspotMenuAudio')._audio._showControls==true){
+        this.$('.audio__controls').removeClass('is-hidden');
+      } else {
+        this.$('.audio__controls').addClass('is-hidden');
+      }
     },
 
     deviceChanged: function() {
@@ -93,6 +185,7 @@ define([
     removeListeners: function() {
       this.stopListening(Adapt, 'device:changed', this.deviceChanged);
       this.stopListening(Adapt, 'device:resize', this.deviceResize);
+      Adapt.trigger('audio:pauseAudio', this.audioChannel);
     }
 
   }, {
