@@ -48,7 +48,6 @@ define([
 
       if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
         this.listenTo(Adapt, 'audio:updateAudioStatus', this.updateToggle);
-        this.listenToOnce(Adapt, 'remove', this.removeListeners);
         this.setupAudio();
       }
 
@@ -185,7 +184,10 @@ define([
     removeListeners: function() {
       this.stopListening(Adapt, 'device:changed', this.deviceChanged);
       this.stopListening(Adapt, 'device:resize', this.deviceResize);
-      Adapt.trigger('audio:pauseAudio', this.audioChannel);
+
+      if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
+        Adapt.trigger('audio:pauseAudio', this.audioChannel);
+      }
     }
 
   }, {
