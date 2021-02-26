@@ -46,7 +46,7 @@ define([
         this.deviceResize();
       }.bind(this));
 
-      if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
+      if (Adapt.audio && this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
         this.listenTo(Adapt, 'audio:updateAudioStatus', this.updateToggle);
         this.setupAudio();
       }
@@ -185,7 +185,7 @@ define([
       this.stopListening(Adapt, 'device:changed', this.deviceChanged);
       this.stopListening(Adapt, 'device:resize', this.deviceResize);
 
-      if (this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
+      if (Adapt.audio && this.model.get('_hotspotMenuAudio')._audio && this.model.get('_hotspotMenuAudio')._audio._isEnabled) {
         Adapt.trigger('audio:pauseAudio', this.audioChannel);
       }
     }
