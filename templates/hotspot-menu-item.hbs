@@ -21,8 +21,12 @@
 	<div class="hotspotmenu-item__graphic">
     {{#if _isLocked}}
       <img src="{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.locked}}{{else}}{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}{{/if}}" aria-hidden="true" />
-    {{else}}
-			<img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}"{{else}} aria-hidden="true"{{/if}} />
+		{{else}}
+			{{#if _isVisited}}
+				<img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.srcVisited}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}"{{else}} aria-hidden="true"{{/if}} />
+			{{else}}
+				<img src="{{_hotspotMenuAudio._hotspotMenuItem._graphic.src}}"{{#if _hotspotMenuAudio._hotspotMenuItem._graphic.alt}} aria-label="{{_hotspotMenuAudio._hotspotMenuItem._graphic.alt}}"{{else}} aria-hidden="true"{{/if}} />
+			{{/if}}
 		{{/if}}
   </div>
 	{{/if}}
