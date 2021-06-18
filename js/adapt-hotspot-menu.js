@@ -151,15 +151,21 @@ define([
     },
 
     deviceResize: function() {
-      var menuWidth = this.$('.hotspotmenu-container__image').outerWidth();
-      var menuHeight = this.$('.hotspotmenu-container__inner').outerHeight();
-
+      var windowHeight = $(window).height();
       var navigationHeight = $('.nav').outerHeight();
-      var headerHeight = this.$('.menu__header').outerHeight();
+      var headerHeight = this.$('.menu__header').outerHeight() ? this.$('.menu__header').outerHeight() : 0;
+
+      var menuWidth = this.$('.hotspotmenu-container').outerWidth();
+      var menuHeight = windowHeight - (navigationHeight + headerHeight);
 
       var decrease = this.startWidth - menuWidth;
       var percentageChanged = Math.round((decrease / this.startWidth) * 100);
       var newSize = 100 - percentageChanged;
+
+      this.$('.hotspotmenu-container__image').css({
+        'height': menuHeight,
+        'width': menuWidth
+      });
 
       if (Adapt.device.screenSize === 'large') {
         this.$('.js-children').css({
